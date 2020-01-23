@@ -125,7 +125,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($this->getUser());
             $entityManager->flush();
             $email = (new TemplatedEmail())
-                ->from("g.masson279@gmail.com")
+                ->from($this->getParameter("MAILER_FROM_ADDRESS"))
                 ->to(new Address($this->getParameter('mailer_from')))
                 ->subject('Gruppetto !')
                 ->html('Felicitations, vous venez de vous inscrire sur le site Gruppetto !');
