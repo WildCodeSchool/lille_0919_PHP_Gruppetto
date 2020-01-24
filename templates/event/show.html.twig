@@ -28,12 +28,11 @@
 
             <div id="participants">
                 {% for participant in participants %}
-                    <img src="{{ participant.avatar }}" alt="">
-                    {{ participant.firstname }}
+                    <img src="{{ participant.avatar }}" alt="{{ participant.firstname }} {{ participant.lastname }}">
                 {% endfor %}
             </div>
 
-            <h2>Commentaire :</h2>
+            <h2>Commentaires :</h2>
             <hr>
             <button class="return"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
             {% if is_granted('ROLE_CLUBER') %}
