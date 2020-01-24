@@ -27,7 +27,7 @@ class HomeController extends AbstractController
     {
 
         if ($this->getUser()) {
-            return $this->redirectToRoute('club_chat');
+            return $this->redirectToRoute('event');
         }
         return $this->render('home/index.html.twig');
     }

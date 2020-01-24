@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+    {% block blackFiltered %}
+    <div id="black-filter"></div>
+    {% block mainLogo %}
+        {% include 'registration/_mainLogo.html.twig' %}
+    {% endblock mainLogo %}
+
+    {% block registrationForm %}
+        {% include 'registration/_registrationClubForm.html.twig' %}
+    {% endblock registrationForm %}
+    {% endblock blackFiltered %}
+
+{% endblock %}
+{% block javascripts %}
+<script type="application/javascript">
+    // on déclare en constante les éléments qu'on aura besoin de bouger, ou avec lesquels on va intéragir
+
+    // le bouton continuer, qui déclenchera la suite du formulaire
+    const continueBtn = document.getElementById('js-continue-club');
+    // la première partie du form dans une div à part
+    const firstFormClub = document.getElementById('js-first-part-form-club');
+    // la deuxième partie du form dans une div à part, avec un style en display none de base
+    const secondFormClub = document.getElementById('js-second-part-form-club');
+    // le dernier SVG pour les step check afin de changer l'image
+    const fourthCheck = document.getElementById('fourth-check');
+
+    // on déclenche cette fonction en cliquant sur le bouton qui a l'ID de continueBtn
+    continueBtn.addEventListener('click', () => {
+        // les points qui séparent les éléments sont comme les flèches des méthodes en PHP
+        /* ici, on prend l'objet firstFormClub (la première div qui est apparente), on regarde sa liste de classes,
+        * puis on lui dit d'ajouter ou d'enlever la classe 'hide' (définie dans _global.scss) selon qu'elle soit
+        * présente ou non dans la liste des classes */
+        firstFormClub.classList.toggle('hide');
+        // idem avec le deuxième, qui deviendra donc visible tandis que le précédent deviendra display:none
+        secondFormClub.classList.toggle('hide');
+        // on change la valeur du src du tag <img>
+        fourthCheck.setAttribute('src', "{{ asset('build/images/step-checked.svg') }}")
+
+        // TODO : ajouter un effet de transition entre les deux display pour que ça soit moins brute
+        // étudier la possibilité d'un bouton retour qui fera l'effet inverse si l'user s'est trompé
+    })
+</script>
+{% endblock %}

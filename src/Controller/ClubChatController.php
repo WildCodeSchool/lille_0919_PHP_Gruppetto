@@ -80,8 +80,8 @@ class ClubChatController extends AbstractController
     {
         $club->getClub();
         if ($request->isXmlHttpRequest()) {
-            $ema = $this->getDoctrine()->getManager();
-            $messages = $ema->getRepository(GeneralChatClub::class)
+            $entityManager = $this->getDoctrine()->getManager();
+            $messages = $entityManager->getRepository(GeneralChatClub::class)
                 ->findBy(['profilClub' => $club->getClub()], ['id' =>'ASC']);
 
             $json = [];

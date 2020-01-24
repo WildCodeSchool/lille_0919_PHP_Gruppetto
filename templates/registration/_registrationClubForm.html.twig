@@ -1,0 +1,38 @@
+{{ form_start(registrationForm2, { 'attr': { 'class': 'registration-form' }}) }}
+
+{# displays the images showing the registration progress #}
+<div class="step-check">
+    <img src="{{ asset('build/images/step-checked.svg') }}" id="first-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-checked.svg') }}" id="second-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-checked.svg') }}" id="third-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-check.svg') }}" id="fourth-check" alt="">
+</div>
+
+{% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div id="js-first-part-form-club" class="part-form">
+    {{ form_errors(registrationForm2.nameClub) }}
+    {{ form_widget(registrationForm2.nameClub)}}
+
+    {{ form_errors(registrationForm2.sport) }}
+    {{ form_widget(registrationForm2.sport)}}
+
+    {{ form_errors(registrationForm2.cityClub) }}
+    {{ form_widget(registrationForm2.cityClub)}}
+    <button type="button" class="continue-btn" id="js-continue-club">Continuer</button>
+</div>
+
+<div id="js-second-part-form-club" class="part-form hide">
+    {{ form_widget(registrationForm2.logoClub) }}
+    {{ form_widget(registrationForm2.DescriptionClub) }}
+    <button type="submit" class="continue-btn">Créer mon profil</button>
+</div>
+
+{{ form_end(registrationForm2) }}
