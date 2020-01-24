@@ -28,6 +28,34 @@
 
             <h2>Commentaire :</h2>
             <hr>
+            <div class="scroll_comment">
+                    {% for comment in comments %}
+
+                    <div class="comment">
+                        <ul>
+                            <li>
+
+                            <p class="name_comment">  {{ comment.profilSolo.lastName}}  {{ comment.profilSolo.firstName}} <br></p>
+                            <p class="content_comment"> {{ comment.content }}</p>
+
+                       </li>
+                        </ul>
+
+                    </div>
+
+                    {% endfor %}
+            </div>
+            <div class="add_comment">
+
+                {{ form_start(form) }}
+                {{ form_widget(form.content) }}
+                 <button class="add_comment">{{ button_label|default('Publier') }} </button>
+
+
+                <div class="alert alert-danger">{{ form_rest(form) }}</div>
+                {{ form_end(form) }}
+            </div>
+
 
 
 

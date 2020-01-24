@@ -1,8 +1,9 @@
 {{ form_start(form)}}
 <div class="form_group1">
     <label for="{{ form.nameEvent.vars.id }}"></label>
-    <input type="text" class="name_event" id= "{{ form.nameEvent.vars.id }}" title="{{ form.nameEvent.vars.full_name }}" value="{{ form.nameEvent.vars.value }}" placeholder="Nom de l'évenement"/>
+    {{ form_widget(form.nameEvent) }}
     <hr>
+
     {% do form.nameEvent.setRendered %}
 </div>
 <div class="date_time">
