@@ -9,4 +9,5 @@ parameters:
         - src/DataFixtures
         - src/Controller/RegistrationController.php
         - src/Controller/SearchBarController.php
+        - src/Controller/EventController.php
 
