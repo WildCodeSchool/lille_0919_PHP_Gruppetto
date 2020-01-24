@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
         $form = $this
             ->createForm(ProfilType::class);
 
-        return $this->render('profil/index.html.twig', [
+        return $this->render('profil/modify.html.twig', [
             'registrationForm2' => $form->createView(),
         ]);
     }

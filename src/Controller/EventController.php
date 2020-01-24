@@ -12,6 +12,6 @@ class EventController extends AbstractController
      */
     public function index()
     {
-        return $this->render('event/index.html.twig');
+        return $this->render('event/modify.html.twig');
     }
 }
