@@ -54,6 +54,12 @@ body {
         transition: max-height 0.2s ease-out;
     }
 
+    .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .backDetail {
         margin-top: 100px;
         margin-bottom: 20px;
