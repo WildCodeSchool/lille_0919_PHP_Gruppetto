@@ -1,41 +1,36 @@
 {{ form_start(form)}}
 <div class="form_group1">
-    <label for="{{ form.nameEvent.vars.id }}"></label>
-    <input type="text" class="name_event" id= "{{ form.nameEvent.vars.id }}" title="{{ form.nameEvent.vars.full_name }}" value="{{ form.nameEvent.vars.value }}" placeholder="Nom de l'évenement"/>
+    {{ form_errors(form.nameEvent) }}
+    {{ form_widget(form.nameEvent) }}
     <hr>
-    {% do form.nameEvent.setRendered %}
+</div>
+<div>
+    {{ form_errors(form.sport) }}
+    {{ form_widget(form.sport) }}
 </div>
 <div class="date_time">
-    <label for="{{ form.timeEvent.vars.id }}" class="time"></label>
-    <label for="{{ form.dateEvent.vars.id }}" class="date"></label>
     <img src="{{ asset("build/images/date.svg")}}" alt="calendrier" class="img-date-heure">
     <img src="{{ asset("build/images/time.svg")}}" alt="horloge" class="img-date-heure">
 </div>
 <div class="form_group">
     {{ form_widget(form.dateEvent) }}
-    {% do form.dateEvent.setRendered %}
     {{ form_widget(form.timeEvent) }}
-    {% do form.timeEvent.setRendered %}
 </div>
 <div class="form_group2">
-    <label for="{{ form.description.vars.id }}"></label>
-    <input type="text" class="description_event" id= "{{ form.description.vars.id }}" title="{{ form.description.vars.full_name }}" value="{{ form.description.vars.value }}" placeholder="Description :"/>
-    {% do form.description.setRendered %}
+    {{ form_errors(form.description) }}
+    {{ form_widget(form.description) }}
 </div>
 <div class="form_group3">
-    <label for="{{ form.levelEvent.vars.id }}" class="level"></label>
-    <input type="number" class="level_event" id= "{{ form.levelEvent.vars.id }}" title="{{ form.levelEvent.vars.full_name }}" value="{{ form.levelEvent.vars.value }}" placeholder="Niveau:"/>
-    {% do form.levelEvent.setRendered %}
+    {{ form_errors(form.levelEvent) }}
+    {{ form_widget(form.levelEvent) }}
 </div>
 <div class="form_group4">
-    <label for="{{ form.participantLimit.vars.id }}" class="level"></label>
-    <input type="number" class="participant_limit" id= "{{ form.participantLimit.vars.id }}" title="{{ form.participantLimit.vars.full_name }}" value="{{ form.participantLimit.vars.value }}" placeholder="N° Participant:"/>
-    {% do form.participantLimit.setRendered %}
+    {{ form_errors(form.participantLimit) }}
+    {{ form_widget(form.participantLimit) }}
 </div>
 <div class="form_group5">
-    <label for="{{ form.placeEvent.vars.id }}"></label>
-    <input type="text" class="placeEvent" id= "{{ form.placeEvent.vars.id }}" title="{{ form.placeEvent.vars.full_name }}" value="{{ form.placeEvent.vars.value }}" placeholder="Lieu:"/>
-    {% do form.placeEvent.setRendered %}
+    {{ form_errors(form.placeEvent) }}
+    {{ form_widget(form.placeEvent) }}
 </div>
 
 <button class="btn">{{ button_label|default('') }}</button>

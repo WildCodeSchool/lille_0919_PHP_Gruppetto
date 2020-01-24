@@ -27,7 +27,6 @@ class EventController extends AbstractController
      * @return Response
      * @IsGranted("ROLE_USER")
      */
-
     public function index(GetUserClub $club): Response
     {
 
@@ -36,7 +35,6 @@ class EventController extends AbstractController
             ->findBy(['creatorClub'=>$club->getClub()]);
         return $this->render('event/index.html.twig', [
             'events' => $events,
-
         ]);
     }
 
@@ -46,18 +44,19 @@ class EventController extends AbstractController
      * @return Response
      * @IsGranted("ROLE_CLUBER")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, GetUserClub $club): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entitymanager = $this->getDoctrine()->getManager();
-            $entitymanager->persist($event);
-            $entitymanager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $event->setCreatorClub($club->getClub());
+            $entityManager->persist($event);
+            $entityManager->flush();
 
-            return $this->redirectToRoute('booking_calendar');
+            return $this->redirectToRoute('event_index');
         }
 
         return $this->render('event/new.html.twig', [
