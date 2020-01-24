@@ -2,8 +2,11 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\Event;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
+use App\Repository\EventRepository;
+use CalendarBundle\Event\CalendarEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -96,14 +99,18 @@ class BookingController extends AbstractController
 
     /**
      * @Route("/booking/calendar", name="booking_calendar", methods={"GET"})
-     * @param BookingRepository $bookingRepository
+     * @param EventRepository $eventRepository
      * @return Response
      */
 
-    public function calendar(BookingRepository $bookingRepository): Response
+    public function calendar(EventRepository $eventRepository): Response
     {
+
         return $this->render('booking/calendar.html.twig', [
-            'bookings' => $bookingRepository->findAll(),
+            'events' => $eventRepository->findAll(),
+
         ]);
     }
+
+
 }

@@ -60,6 +60,7 @@ class EventController extends AbstractController
     /**
      * @Route("/{id}", name="event_show", methods={"GET"})
      * @param EventRepository $eventRepository
+     * @param Event $event
      * @return Response
      */
     public function show(EventRepository $eventRepository, Event $event): Response
@@ -109,6 +110,7 @@ class EventController extends AbstractController
 
         return $this->redirectToRoute('event_index');
     }
+
 
 
     /**
