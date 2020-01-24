@@ -111,6 +111,4 @@ class BookingController extends AbstractController
 
         ]);
     }
-
-
 }
