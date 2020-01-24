@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\Comment;
 use App\Entity\Event;
 use App\Entity\ParticipationLike;
+use App\Entity\ProfilSolo;
+use App\Form\CommentType;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use App\Repository\ParticipationLikeRepository;
@@ -14,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use DateTime;
 
 /**
  * @Route("/event")
@@ -58,16 +62,40 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="event_show", methods={"GET"})
+     * @Route("/{id}", name="event_show",  methods={"POST", "GET"}, options={"expose"=true})
      * @param EventRepository $eventRepository
+     * @param Event $event
+     * @param Request $request
      * @return Response
+     * @throws \Exception
      */
-    public function show(EventRepository $eventRepository, Event $event): Response
+    public function show(EventRepository $eventRepository, Event $event, Request $request): Response
     {
-        return $this->render('event/show.html.twig', [
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        $comments = $this->getDoctrine()->getRepository(Comment::class)
+            ->findBy(['event'=>$event]);
+
+        $creatorSolo = $this->getUser()->getProfilSolo();
+
+
+        if ($form->isSubmitted() && $form->isValid() && ($form['content']->getData()) != null) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $comment->setContent($_POST['comment']['content']);
+            $comment->setDateComment(new DateTime('now'));
+            $comment->setEvent($event);
+            $comment->setProfilSolo($creatorSolo);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+        }
+
+            return $this->render('event/show.html.twig', [
             'events' => $eventRepository->findAll(),
+            'form' => $form->createView(),
+            'comments' => $comments,
             'event' => $event
-        ]);
+            ]);
     }
 
     /**
