@@ -55,6 +55,7 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->profilClubs = new ArrayCollection();
         $this->participationLikes = new ArrayCollection();
     }
 
@@ -123,7 +124,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        // $roles[] = 'ROLE_REGISTERED';
         return array_unique($roles);
     }
 

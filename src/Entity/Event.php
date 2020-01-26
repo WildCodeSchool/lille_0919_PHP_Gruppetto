@@ -93,6 +93,9 @@ class Event
     public function __construct()
     {
         $this->participationLikes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->registrationEvent = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
 
@@ -107,7 +110,7 @@ class Event
         return $this->nameEvent;
     }
 
-    public function setNameEvent(string $nameEvent): self
+    public function setNameEvent(?string $nameEvent): ?self
     {
         $this->nameEvent = $nameEvent;
 
@@ -167,7 +170,7 @@ class Event
         return $this->participantLimit;
     }
 
-    public function setParticipantLimit(int $participantLimit): self
+    public function setParticipantLimit(?int $participantLimit): self
     {
         $this->participantLimit = $participantLimit;
 
@@ -179,7 +182,7 @@ class Event
         return $this->placeEvent;
     }
 
-    public function setPlaceEvent(string $placeEvent): self
+    public function setPlaceEvent(?string $placeEvent): self
     {
         $this->placeEvent = $placeEvent;
 

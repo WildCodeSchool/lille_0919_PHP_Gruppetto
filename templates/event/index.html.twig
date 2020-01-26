@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Booking | Evenement{% endblock %}
+{% block title %}Booking | Événements {% endblock %}
 {% block stylesheets %}
     {{ encore_entry_link_tags('new_events') }}
 {% endblock %}
 {% block body %}
-
         {% for event in events %}
             <button class="card_button"><a href="{{ path('event_show', {'id': event.id}) }}">
            <div class="card_events">
@@ -16,11 +15,12 @@
                 </a>
             </button>
         {% else %}
-            <h1>Aucun évenement trouver</h1>
+            <h1>Aucun événement trouvé. Créez votre premier événement.</h1>
 
         {% endfor %}
-
+    {% if is_granted('ROLE_CLUBER') %}
     <button class="add"><a href="{{ path('event_new') }}"><img src="{{ asset("build/images/add.svg")}}" alt="edit" class="icons"></a></button>
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('new_events') }}

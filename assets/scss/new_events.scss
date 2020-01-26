@@ -14,7 +14,7 @@ body{
     //box green of page new
     .new{
         background: $primary-color95;
-        border: 5px solid #1E6740;
+        border:  3px solid $primary-border-color;
         box-sizing: border-box;
         border-radius: 5px;
         margin: 15% 5% 20% 5%;
@@ -56,7 +56,7 @@ body{
     width: 50px;
     height: 50px;
     position: absolute;
-    left: 160px;
+    left: 230px;
     top: 581px;
 }
 
@@ -85,8 +85,8 @@ select, option{
 
 //box blue
 .description_event{
-    background: $tertiary-color50;
-    border: 1px solid $tertiary-color50;
+    background: $primary-color70;
+    border: 1px solid $secondary-border-color;
     color: $light;
     border-radius: 5%;
     width: 250px;
@@ -95,9 +95,14 @@ select, option{
 }
 
 // level of  event
-.level{
-    color: $light;
-    margin-left: 5%;
+.level_event{
+    margin-left: 15%;
+    border-color: $secondary-border-color;
+}
+
+// participantLimit
+.participant_limit{
+    border-color: $secondary-border-color;
 }
 
 // place of event
@@ -105,6 +110,7 @@ select, option{
     color: $light;
     margin-left: 5%;
     width: 90%;
+    border-color: $secondary-border-color;
 }
 
 //icon of edit and return

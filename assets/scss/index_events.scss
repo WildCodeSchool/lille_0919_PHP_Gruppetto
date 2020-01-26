@@ -23,7 +23,7 @@ body{
     //cards of event in index page
     .card_events{
         background: $primary-color95;
-        border: 5px solid #1E6740;
+        border:  3px solid $primary-border-color;
         border-radius: 5px;
         }
 
@@ -53,7 +53,7 @@ body{
     //box green of page show
     .show_events {
         background: $primary-color95;
-        border: 5px solid #1E6740;
+        border:  3px solid $primary-border-color;
         box-sizing: border-box;
         border-radius: 5px;
         margin: 5% 5% 20% 5%;
@@ -88,7 +88,7 @@ body{
 
     //participation section
     img{
-        width: 20px;
+        width: 50px;
         border-radius: 50%;
         margin-left: 15px ;
         }
@@ -157,6 +157,18 @@ body{
         top: 520px;
         left: 30px;
         }
+
+    .return1{
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 580px;
+        left: 80px;
+    }
 
     //button of edit
     .edit{

@@ -13,12 +13,13 @@ body{
 
     //box green of page edit
     .edit{
-        background: $primary-color95;
-        border: 5px solid #1E6740;
-        box-sizing: border-box;
+        background-color: $primary-color95;
+        height: 80%;
+        width: 90%;
+        border: 3px solid $primary-border-color;
         border-radius: 5px;
         margin: 5% 5% 20% 5%;
-        height: 80%;
+
 
         //input of add name events
         .name_event{

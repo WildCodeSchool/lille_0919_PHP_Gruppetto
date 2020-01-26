@@ -80,7 +80,7 @@ class Sport
     {
         if (!$this->profilClubs->contains($profilClub)) {
             $this->profilClubs[] = $profilClub;
-            $profilClub->addSport($this);
+            $profilClub->setSport($this);
         }
 
         return $this;
@@ -165,5 +165,9 @@ class Sport
         $this->sportCategory = $sportCategory;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->sportName;
     }
 }

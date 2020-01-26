@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Booking | l'evenement{% endblock %}
+{% block title %}Booking | {{event.nameEvent}} {% endblock %}
 {% block stylesheets %}
     {{ encore_entry_link_tags('new_events') }}
 {% endblock %}
@@ -23,7 +23,12 @@
                 {% else %}
                     <i class="far fa-check-circle"></i>
                 {% endif %}
-                <span class="js-participationLikes">{{ event.participationLikes | length }}</span>/{{ event.participantLimit }}
+                {% if event.participantLimit >  event.participationLikes | length  %}
+                <span class="js-participationLikes">{{ event.participationLikes | length }}</span> / {{ event.participationLikes | length }}
+                {% else %}
+                    <p>Nombre limite de participant atteint :</p>{{ event.participationLikes | length }}/{{ event.participationLikes | length }}
+                {% endif %}
+
             </a>
 
             <h2>Commentaire :</h2>
@@ -56,38 +61,23 @@
                 {{ form_end(form) }}
             </div>
 
+            <div id="participants">
+                {% for participant in participants %}
+                    <img src="{{ participant.avatar }}" alt="{{ participant.firstname }} {{ participant.lastname }}">
+                {% endfor %}
+            </div>
 
-
-
-
+            <h2>Commentaires :</h2>
+            <hr>
+            <button class="return"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
+            {% if is_granted('ROLE_CLUBER') %}
             {{ include('event/_delete_form.html.twig') }}
-            <button class="return"><a href="{{ path('event_index') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
             <button class="edit"><a href="{{ path('event_edit', {'id': event.id}) }}"><img src="{{ asset("build/images/btn-modif.svg")}}" alt="edit" class="icons"></a></button>
-
+            {% endif %}
         </div>
     </div>
 {% endblock %}
 {% block javascripts %}
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-
-        function onclickBtnParticipe(event){
-            event.preventDefault();
-
-            const url = this.href;
-            const spanCount = this.querySelector('span.js-participationLikes');
-            const icone = this.querySelector('i');
-            axios.get(url).then(function (response) {
-                spanCount.textContent = response.data.participationLikes;
-
-                if(icone.classList.contains('fas')) icone.classList.replace('fas', 'far');
-                else
-                    icone.classList.replace('far', 'fas');
-            })
-        }
-
-        document.querySelectorAll('a.js-participe').forEach(function (link) {
-            link.addEventListener('click', onclickBtnParticipe);
-        })
-    </script>
+         {{ encore_entry_script_tags('participation') }}
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 {% endblock %}

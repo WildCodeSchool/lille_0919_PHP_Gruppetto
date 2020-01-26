@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+    {% block blackFiltered %}
+    <div id="black-filter"></div>
+    {% block mainLogo %}
+        {% include 'registration/_mainLogo.html.twig' %}
+    {% endblock mainLogo %}
+
+    {% block registrationForm %}
+        {% include 'registration/_registrationSoloForm.html.twig' %}
+    {% endblock registrationForm %}
+    {% endblock blackFiltered %}
+
+{% endblock %}
