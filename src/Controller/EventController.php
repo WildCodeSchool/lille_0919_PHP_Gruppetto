@@ -235,5 +235,12 @@ class EventController extends AbstractController
             'message' => 'Participation acceptée',
             'participationLikes'=> $participationRepo->count(['event'=> $event])
         ], 200);
+
+        if ($this->getUser()->getRoles() === ['ROLE_REGISTERED']) {
+            return $this->render('registration/choiceTypeRegister.html.twig');
+        }
+        return $this->render('event/index.html.twig');
+
+
     }
 }

@@ -116,6 +116,8 @@ class AppFixtures extends Fixture
         $manager->persist($sportCategory);
 
         // Fixtures for sport//
+        $sport = new Sport();
+        $sport->setSportName('Courses');
         $sport= new Sport();
         $sport->setSportName('Course à pied');
         $sport->setSportCategory($sportCategory);
