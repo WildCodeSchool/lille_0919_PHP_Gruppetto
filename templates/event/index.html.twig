@@ -20,7 +20,7 @@
         {% endfor %}
     {% if is_granted('ROLE_CLUBER') %}
     <button class="add"><a href="{{ path('event_new') }}"><img src="{{ asset("build/images/add.svg")}}" alt="edit" class="icons"></a></button>
-    {%endif%}
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('new_events') }}
