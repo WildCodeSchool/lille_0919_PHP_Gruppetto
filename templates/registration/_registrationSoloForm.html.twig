@@ -1,0 +1,52 @@
+{{ form_start(registrationForm3, { 'attr': { 'class': 'registration-form' }}) }}
+
+{# displays the images showing the registration progress #}
+<div class="step-check">
+    <img src="{{ asset('build/images/step-checked.svg') }}" id="first-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-checked.svg') }}" id="second-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-checked.svg') }}" id="third-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-checked.svg') }}" id="fourth-check" alt="">
+</div>
+
+<div id="js-first-part-form-solo" class="part-form">
+    {{ form_errors(registrationForm3.lastname) }}
+    {{ form_widget(registrationForm3.lastname) }}
+
+    {{ form_errors(registrationForm3.firstname) }}
+    {{ form_widget(registrationForm3.firstname) }}
+
+    {{ form_errors(registrationForm3.phone) }}
+    {{ form_widget(registrationForm3.phone) }}
+    <button type="button" class="continue-btn" id="js-continue-solo">Continuer</button>
+</div>
+
+<div id="js-second-part-form-solo" class="part-form-hide">
+    {{ form_errors(registrationForm3.birthdate) }}
+    {{ form_widget(registrationForm3.birthdate) }}
+
+    {{ form_errors(registrationForm3.gender) }}
+    {{ form_widget(registrationForm3.gender) }}
+
+    {{ form_errors(registrationForm3.avatar) }}
+    {{ form_widget(registrationForm3.avatar) }}
+
+    {{ form_errors(registrationForm3.description) }}
+    {{ form_widget(registrationForm3.description) }}
+    <button type="button" class="continue-btn" id="js-continue-solo">Continuer</button>
+</div>
+
+<div id="js-third-part-form-solo" class="part-form-hide">
+
+
+    {{ form_errors(registrationForm3.emergencyContactName) }}
+    {{ form_widget(registrationForm3.emergencyContactName) }}
+
+    {{ form_errors(registrationForm3.emergencyPhone) }}
+    {{ form_widget(registrationForm3.emergencyPhone) }}
+    <button type="submit" class="continue-btn">Créer mon profil</button>
+</div>
+{{ form_end(registrationForm3) }}
+

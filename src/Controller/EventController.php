@@ -22,12 +22,11 @@ use Doctrine\ORM\EntityManagerInterface;
 class EventController extends AbstractController
 {
     /**
-     * @Route("/", name="event_index", methods={"GET", "POST"}, options={"expose"=true})
+     * @Route("/", name="event", methods={"GET", "POST"}, options={"expose"=true})
      * @param GetUserClub $club
      * @return Response
      * @IsGranted("ROLE_USER")
      */
-
     public function index(GetUserClub $club): Response
     {
 
@@ -36,7 +35,6 @@ class EventController extends AbstractController
             ->findBy(['creatorClub'=>$club->getClub()]);
         return $this->render('event/index.html.twig', [
             'events' => $events,
-
         ]);
     }
 
@@ -46,18 +44,19 @@ class EventController extends AbstractController
      * @return Response
      * @IsGranted("ROLE_CLUBER")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, GetUserClub $club): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entitymanager = $this->getDoctrine()->getManager();
-            $entitymanager->persist($event);
-            $entitymanager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $event->setCreatorClub($club->getClub());
+            $entityManager->persist($event);
+            $entityManager->flush();
 
-            return $this->redirectToRoute('booking_calendar');
+            return $this->redirectToRoute('event');
         }
 
         return $this->render('event/new.html.twig', [
@@ -75,10 +74,35 @@ class EventController extends AbstractController
      */
     public function show(EventRepository $eventRepository, Event $event): Response
     {
+        $participants = $this->getParticipants($event);
+
         return $this->render('event/show.html.twig', [
             'events' => $eventRepository->findAll(),
-            'event' => $event
+            'event' => $event,
+            'participants' => $participants
         ]);
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function getParticipants(Event $event)
+    {
+
+        $entityManager = $this->getDoctrine()->getRepository(ParticipationLike::class);
+        $participantList = $entityManager->findBy([
+            'event'=> $event
+        ]);
+
+        $list = [];
+        foreach ($participantList as $participant) {
+            $list[]= [
+                    'firstname' => $participant->getUser()->getProfilSolo()->getFirstname(),
+                    'lastname' => $participant->getUser()->getProfilSolo()->getLastname(),
+                    'avatar' => $participant->getUser()->getProfilSolo()->getAvatar(),
+                ];
+        }
+            return $list;
     }
 
     /**
@@ -96,7 +120,7 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('event_index');
+            return $this->redirectToRoute('event');
         }
 
         return $this->render('event/edit.html.twig', [
@@ -120,9 +144,8 @@ class EventController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('event_index');
+        return $this->redirectToRoute('event');
     }
-
 
     /**
      * Allows you to participate and no longer participate
@@ -158,8 +181,8 @@ class EventController extends AbstractController
             return $this->json([
                 'code'=>200,
                 'message'=>"Participation supprimée",
-                'participationLikes'=> $participationRepo->count(['event'=> $event])
-            ], 200);
+                'participationLikes'=> $participationRepo->count(['event'=> $event]),
+                ], 200);
         }
 
         $participationLike = new ParticipationLike();
