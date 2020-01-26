@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\GeneralChatClub;
 use App\Form\GeneralChatType;
 use App\Repository\GeneralChatClubRepository;
+use App\Repository\ProfilClubRepository;
+use App\Repository\ProfilSoloRepository;
 use App\Services\GetUserClub;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -74,12 +76,12 @@ class ClubChatController extends AbstractController
      * @Route("/getMessages", name="_get_messages", methods={"GET"}, options={"expose"=true})
      * @return JsonResponse
      */
-    public function getMessages(Request $request, GetUserClub $club)
+    public function getMessages(Request $request, GetUserClub $club) : Response
     {
         $club->getClub();
         if ($request->isXmlHttpRequest()) {
-            $ema = $this->getDoctrine()->getManager();
-            $messages = $ema->getRepository(GeneralChatClub::class)
+            $entityManager = $this->getDoctrine()->getManager();
+            $messages = $entityManager->getRepository(GeneralChatClub::class)
                 ->findBy(['profilClub' => $club->getClub()], ['id' =>'ASC']);
 
             $json = [];
@@ -103,5 +105,45 @@ class ClubChatController extends AbstractController
             return new JsonResponse($json, 200, [], true);
         }
         return new JsonResponse(null, 500, [], true);
+    }
+
+    /**
+     * @return Response
+     * @Route("/getUserInfos/{messageId}", name="_getUserInfos", methods={"POST"}, options={"expose"=true})
+     */
+    public function getUserInfos(
+        GeneralChatClubRepository $chatClubRepository,
+        GeneralChatClub $messageId,
+        ProfilSoloRepository $profilSoloRepository,
+        GetUserClub $club
+    ) : Response {
+        if ($this->getUser() && ($messageId->getProfilClub()) === $club->getClub()) {
+            $message = $chatClubRepository->find($messageId);
+            // returns ID of profilSolo or profilClub
+            $userSelected = $message->getProfilSolo()
+                ? $message->getProfilSolo() : $message->getProfilClub();
+            $json = [];
+            // if entity == club
+            if (is_null($message->getProfilSolo())) {
+                $json[] = [
+                    'nameClub' => $userSelected->getNameClub(),
+                    'cityClub' => $userSelected->getCityClub(),
+                    'logoClub' => $userSelected->getLogoClub(),
+                    'descriptionClub' => $userSelected->getDescriptionClub()
+                ];
+                // if entity == solo
+            } else {
+                $profilSolo = $profilSoloRepository->find($userSelected);
+                $json[] = [
+                    'lastnameSolo' => $profilSolo->getLastname(),
+                    'firstnameSolo' => $profilSolo->getFirstname(),
+                    'avatarSolo' => $profilSolo->getAvatar(),
+                    'descriptionSolo' => $profilSolo->getDescription()
+                ];
+            }
+            $json = json_encode($json);
+            return new JsonResponse($json, 200, [], true);
+        }
+        return new JsonResponse(null, 404);
     }
 }

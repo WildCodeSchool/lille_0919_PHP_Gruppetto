@@ -137,7 +137,7 @@ class ProfilClub
         return $this->sports;
     }
 
-    public function addSport(Sport $sports): self
+    public function setSport(Sport $sports): self
     {
         if (!$this->sports->contains($sports)) {
             $this->sports[] = $sports;

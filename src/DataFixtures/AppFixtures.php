@@ -74,7 +74,9 @@ class AppFixtures extends Fixture
         $profilClub2 = new ProfilClub();
         $profilClub2->setNameClub('Swim Team');
         $profilClub2->setCityClub('Douai');
-        $profilClub2->setLogoClub('avatar6.jpg');
+        $profilClub2->setLogoClub(
+            'https://image.shutterstock.com/image-vector/swimming-club-logo-design-swimmer-600w-255149764.jpg'
+        );
         $profilClub2->setDescriptionClub('Club de natation');
         $profilClub2->addUser($cluber2);
         $manager->persist($profilClub2);
@@ -84,9 +86,9 @@ class AppFixtures extends Fixture
         $profilSolo->setLastname('Doe');
         $profilSolo->setFirstname('Jonh');
         $profilSolo->setBirthdate(new DateTime(141220));
-        $profilSolo->setDescription('My description');
+        $profilSolo->setDescription('J\'ai perdu la mémoire ! Mais j\'aime nager en crawl.');
         $profilSolo->setGender(0);
-        $profilSolo->setAvatar('avatar.jpg');
+        $profilSolo->setAvatar('https://randomuser.me/api/portraits/men/97.jpg');
         $profilSolo->setEmergencyContactName('Pascale Dino');
         $profilSolo->setLevel(1);
         $profilSolo->setSportFrequency(2);
@@ -116,6 +118,8 @@ class AppFixtures extends Fixture
         // Fixtures for sport//
         $sport = new Sport();
         $sport->setSportName('Courses');
+        $sport= new Sport();
+        $sport->setSportName('Course à pied');
         $sport->setSportCategory($sportCategory);
         $manager->persist($sport);
 

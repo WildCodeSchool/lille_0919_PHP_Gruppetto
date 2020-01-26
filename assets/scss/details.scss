@@ -5,7 +5,7 @@
 
 // Start Details CSS
 body {
-    height: 0;
+    max-height: 0;
 }
 
 .information {
@@ -15,8 +15,9 @@ body {
     border-radius: 5px;
     border: $secondary-border-color solid 3px;
     text-align: center;
-    width: 120px;
+    width: 150px;
     font-size: 18px;
+    padding: 10px;
 }
 
 .details {
