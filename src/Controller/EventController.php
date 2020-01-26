@@ -240,7 +240,5 @@ class EventController extends AbstractController
             return $this->render('registration/choiceTypeRegister.html.twig');
         }
         return $this->render('event/index.html.twig');
-
-
     }
 }
