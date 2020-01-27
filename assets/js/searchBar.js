@@ -12,8 +12,8 @@ mySearchIcon.addEventListener('click', () => {
     mySearchInput.classList.toggle('visible');
 });
 
-
-function createElement(name) {
+function createElement(name)
+{
     return document.createElement(name);
 }
 
