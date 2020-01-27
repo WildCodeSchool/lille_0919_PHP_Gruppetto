@@ -8,12 +8,12 @@
 {% include 'navbar/_navbar.html.twig' %}
     <section class="container">
         <div class="searchBar">
-            <input type="text" class="searchType">
+            <input type="text" class="searchType" id="js-search-input">
             <div class="js-search-icon">
                 <img src="{{ asset('build/images/icons8-search-blue.svg') }}" alt="search icon">
             </div>
-
         </div>
+        <div id="js-search-results" class="search-results hide"></div>
 
             {% block greenBox %}
         <section class="green-box">
