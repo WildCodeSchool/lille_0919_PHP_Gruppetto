@@ -156,7 +156,7 @@ if (newMessageForm) {
                 for (let index = 0; index <= response.length - 1; index += 1) {
                     insertToDOM(response[index]);
                 }
-                $('.js-chatbox').animate({scrollTop: $('.js-chatbox').get(0).scrollHeight});
+                $('.js-chatbox').animate({ scrollTop: $('.js-chatbox').get(0).scrollHeight });
             })
             .catch((error) => {
                 // show error message

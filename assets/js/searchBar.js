@@ -10,27 +10,23 @@ const searchResultsBlock = document.getElementById('js-search-results');
 mySearchIcon.addEventListener('click', () => {
     mySearchInput.value = '';
     mySearchInput.classList.toggle('visible');
-
 });
 
 
-function createElement(name)
-{
+function createElement(name) {
     return document.createElement(name);
 }
 
-function insertToDOM(data)
-{
+function insertToDOM(data) {
     const p = createElement('p');
     p.className = 'search-result';
 
     // data
-    const fullname = data.fullname;
+    const { fullname } = data;
     const pResult = searchResultsBlock.appendChild(p);
 
     // add all the elements to the message-list in the right order
     pResult.innerHTML = `${fullname}`;
-
 }
 
 
@@ -41,17 +37,16 @@ mySearchInput.addEventListener('keyup', () => {
     if (mySearchInput.value === '') {
         searchResultsBlock.innerText = '';
         searchResultsBlock.classList.add('hide');
-        return
+        return;
     }
     new Promise(((resolve, reject) => {
         searchResultsBlock.classList.remove('hide');
         const joker = mySearchInput.value;
-        console.log(joker);
-        const url = Routing.generate("searchbar_getMembers", { joker });
+        const url = Routing.generate('searchbar_getMembers', { joker });
         const xhr = new XMLHttpRequest();
         xhr.open('GET', url);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.addEventListener('load', function (event) {
+        xhr.addEventListener('load', function searchMembers(event) {
             if (this.readyState === 4) {
                 if (this.status === 200 && this.statusText === 'OK') {
                     resolve(JSON.parse(this.responseText));
