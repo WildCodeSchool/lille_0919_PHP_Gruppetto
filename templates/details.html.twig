@@ -31,7 +31,7 @@
             <strong>Est ce que je peux utiliser cette appli à l’étranger ?</strong> <br>
             Oui tout à fait ! Nous travaillons actuellement sur des versions européennes. N’hésite pas à nous aider à promouvoir Gruppetto en France et ailleurs !
         </section>
-        <button class="accordion">conditions générales d'utilisation</button>
+        <button class="accordion">Conditions générales d'utilisation</button>
         <section class="panel">
             <br>
             <strong>1.1 Le Site est réservé aux personnes majeures ayant la qualité de particulier ainsi qu’aux mineurs titulaires d’une autorisation parentale.</strong>
@@ -67,13 +67,13 @@
             Hébergeur de plateforme : OVH
         </section>
         <button class="accordion">Nous contacter</button>
-        <form class="panel contact">
+        <form method="post" class="panel contact">
            <div>{{ form_start(email_form) }}</div>
             <div>{{ form_widget(email_form) }}</div>
             <input type="submit" value="Send"/>
             <div>{{ form_end(email_form) }}</div>
         </form>
-        <a class="backDetail" href="{{path('app_register')}}">
+        <a class="backDetail" href="{{path('event')}}">
             <img class="return" src="{{asset("build/images/back-arrow-icon.blue.09d0f3da.svg")}}" alt="return">
         </a>
     </section>

@@ -10,6 +10,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContactType extends AbstractType
 {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('subject', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('message', TextareaType::class)
+        ;
+        $options=null;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

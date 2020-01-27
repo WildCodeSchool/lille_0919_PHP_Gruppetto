@@ -56,7 +56,7 @@ class HomeController extends AbstractController
 
             $email = (new Email())
                 ->from(new Address($data['email'], $data['nom']))
-                ->to('ryadus2001@gmail.com')
+                ->to('gruppetto@gruppetto.com')
                 ->subject('Contact')
                 ->text($data['message'])
                 ->html($data['message'] . ' ' . '<br><small>De la part de </small>' . $data['email']);
