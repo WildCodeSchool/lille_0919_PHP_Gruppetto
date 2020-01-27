@@ -9,13 +9,13 @@ use App\Form\InformationClubFormType;
 use App\Form\InformationSoloFormType;
 use App\Form\RegistrationFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -124,12 +124,14 @@ class RegistrationController extends AbstractController
             $entityManager->persist($profilClub);
             $entityManager->persist($this->getUser());
             $entityManager->flush();
-            $email = (new TemplatedEmail())
-                ->from($this->getParameter('mailer_from'))
+
+            $email = (new Email())
+                ->from('hello@example.com')
                 ->to(new Address($this->getParameter('mailer_from')))
                 ->subject('Gruppetto !')
-                ->html('Félicitations, vous venez de vous inscrire chez Gruppetto!');
+                ->text('Félicitations, vous venez de vous inscrire chez Gruppetto!');
             $mailer->send($email);
+
             $this->addFlash(
                 'notice',
                 "Il ne vous reste plus qu'à vous connecter !"
