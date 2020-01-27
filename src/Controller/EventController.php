@@ -133,10 +133,11 @@ class EventController extends AbstractController
      * @Route("/{id}", name="event_delete", methods={"DELETE"})
      * @param Request $request
      * @param Event $event
+     * @param EntityManagerInterface $entityManager
      * @return Response
      * @IsGranted("ROLE_CLUBER")
      */
-    public function delete(Request $request, Event $event): Response
+    public function delete(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $event->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
