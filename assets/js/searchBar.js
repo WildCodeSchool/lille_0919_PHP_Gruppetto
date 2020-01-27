@@ -13,7 +13,6 @@ mySearchIcon.addEventListener('click', () => {
 
 });
 
-
 function createElement(name)
 {
     return document.createElement(name);

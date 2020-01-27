@@ -10,6 +10,7 @@ use App\Form\InformationSoloFormType;
 use App\Form\RegistrationFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,6 +28,7 @@ class RegistrationController extends AbstractController
      * @Route("/register", name="app_register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -96,12 +98,13 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $logoFile =$form['logoClub']->getData();
 
             if (is_null($form['logoClub']->getData())) {
                 $profilClub->setLogoClub('no_avatar.jpg');
-            } else {
-                $profilClub->setLogoClub($form['logoClub']->getData());
-                $logoClub=md5(uniqid()) . '.' . $profilClub->guessExtension();
+            } if ($logoFile) {
+                $logoClub=md5(uniqid()) . '.' . $logoFile->guessExtension();
+                $logoFile->move($logoClub);
                 $profilClub->setLogoClub($logoClub);
             }
 
@@ -134,6 +137,7 @@ class RegistrationController extends AbstractController
      * @Route("/register/solo/informations", name="app_solo_register_informations")
      * @param Request $request
      * @return Response
+     * @IsGranted("ROLE_REGISTERED")
      */
     public function informationSolo(Request $request): Response
     {
@@ -149,12 +153,13 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $logoFile =$form['avatar']->getData();
 
             if (is_null($form['avatar']->getData())) {
                 $profilSolo->setAvatar('no_avatar.jpg');
-            } else {
-                $profilSolo->setAvatar($form['avatar']->getData());
-                $logoClub=md5(uniqid()) . '.' . $profilSolo->guessExtension();
+            } if ($logoFile) {
+                $logoClub=md5(uniqid()) . '.' . $logoFile->guessExtension();
+                $logoFile->move($logoClub);
                 $profilSolo->setAvatar($logoClub);
             }
 
@@ -169,7 +174,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'notice',
-                "Il ne vous reste plus q'à vous connecter !"
+                "Il ne vous reste plus qu'à vous connecter !"
             );
 
             return $this->redirectToRoute('app_login');
