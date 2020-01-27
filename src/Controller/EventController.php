@@ -12,6 +12,9 @@ class EventController extends AbstractController
      */
     public function index()
     {
+        if ($this->getUser()->getRoles() === ['ROLE_REGISTERED']) {
+            return $this->render('registration/choiceTypeRegister.html.twig');
+        }
         return $this->render('event/index.html.twig');
     }
 }
