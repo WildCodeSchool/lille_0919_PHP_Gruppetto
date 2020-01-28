@@ -5,12 +5,11 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-<<<<<<< HEAD
+
     upload_directory: '%kernel.project_dir%/public/uploads/clubLogo'
-=======
+
     mailer_from: '%env(resolve:MAILER_FROM_ADDRESS)%'
 
->>>>>>> 2e6e73321d4a2518d0ac5d19539689014b1ef4b3
 
 services:
     # default configuration for services in *this* file
