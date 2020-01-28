@@ -18,8 +18,8 @@ class ProfilClubType extends AbstractType
         $builder
             ->add('nameClub', TextType::class, ['label'=>null])
             ->add('cityClub', TextType::class, ['label'=>null])
-            ->add('logoClub', FileType::class, ['label'=>'Logo',
-                // unmapped because the fiedl is not associate to any entity//
+            ->add('logoClub', FileType::class, ['label'=>null,
+                // unmapped because the field is not associate to any entity//
                 'mapped'=> false,
                 // require is false, don't have to re-upload if the user edit is profil//
                 'required'=> false,

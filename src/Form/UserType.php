@@ -9,6 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class UserType extends AbstractType
@@ -22,6 +25,12 @@ class UserType extends AbstractType
                     'mapped'=>false
             ))
             ->add('password', RepeatedType::class, [
+                'constraints' => [new Length(['min' => 6]), new NotBlank(), new Regex([
+                //at least one uppercase letter, one lowercase letter, one number and one special character
+                'pattern' => '#(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]#',
+                'message' => "Votre mot de passe doit contenir au moins 6 charactères dont au moins une majuscule,
+                     une minuscule, un chiffre et un charactère spécial"
+                ])],
                 'type'=> PasswordType::class,
                 'invalid_message' => 'Les mots de passent doivent correspondre',
                 'options'=> ['attr' => ['class'=>'password-field']],
