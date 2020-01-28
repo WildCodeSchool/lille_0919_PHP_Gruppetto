@@ -25,5 +25,15 @@
             <button><img src="{{ asset('build/images/send-message-icon.svg') }}" alt=""></button>
         </div>
         {{ form_end(form) }}
+
+        <div class="user-card" id="js-user-card">
+            <img src="data.logo" alt="avatar utilisateur" id="user-avatar">
+            <div id="text-info">
+                <p id="user-name"></p>
+                <p id="user-description"></p>
+                <a href="#" class="close" id="close-btn"></a>
+            </div>
+        </div>
+
     </section>
 {% endblock greenBox %}

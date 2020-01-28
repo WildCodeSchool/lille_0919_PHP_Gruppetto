@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
@@ -84,12 +85,20 @@ class Event
      */
     private $bookings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ParticipationLike", mappedBy="event")
+     */
+    private $participationLikes;
+
     public function __construct()
     {
+        $this->participationLikes = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->registrationEvent = new ArrayCollection();
         $this->bookings = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -101,7 +110,7 @@ class Event
         return $this->nameEvent;
     }
 
-    public function setNameEvent(string $nameEvent): self
+    public function setNameEvent(?string $nameEvent): ?self
     {
         $this->nameEvent = $nameEvent;
 
@@ -161,19 +170,19 @@ class Event
         return $this->participantLimit;
     }
 
-    public function setParticipantLimit(int $participantLimit): self
+    public function setParticipantLimit(?int $participantLimit): self
     {
         $this->participantLimit = $participantLimit;
 
         return $this;
     }
 
-    public function getPlaceEvent(): ?string
+    public function getPlaceEvent()
     {
         return $this->placeEvent;
     }
 
-    public function setPlaceEvent(string $placeEvent): self
+    public function setPlaceEvent(?string $placeEvent): self
     {
         $this->placeEvent = $placeEvent;
 
@@ -304,5 +313,51 @@ class Event
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|ParticipationLike[]
+     */
+    public function getParticipationLikes(): Collection
+    {
+        return $this->participationLikes;
+    }
+
+    public function addParticipationLike(ParticipationLike $participationLike): self
+    {
+        if (!$this->participationLikes->contains($participationLike)) {
+            $this->participationLikes[] = $participationLike;
+            $participationLike->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipationLike(ParticipationLike $participationLike): self
+    {
+        if ($this->participationLikes->contains($participationLike)) {
+            $this->participationLikes->removeElement($participationLike);
+            // set the owning side to null (unless already changed)
+            if ($participationLike->getEvent() === $this) {
+                $participationLike->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Lets you know if the user is participating
+     * @param User $user
+     * @return bool
+     */
+    public function isParticipationByUser(User $user) : bool
+    {
+        foreach ($this->participationLikes as $participationLike) {
+            if ($participationLike->getUser() === $user) {
+                return true;
+            }
+        }
+            return false;
     }
 }

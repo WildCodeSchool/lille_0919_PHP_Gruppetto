@@ -64,7 +64,7 @@ class ProfilClub
     private $events;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProfilSolo", mappedBy="profilClub")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProfilSolo", mappedBy="profilClub", fetch="EAGER")
      */
     private $profilSolos;
 
@@ -138,7 +138,7 @@ class ProfilClub
         return $this->sports;
     }
 
-    public function addSport(Sport $sports): self
+    public function setSport(Sport $sports): self
     {
         if (!$this->sports->contains($sports)) {
             $this->sports[] = $sports;
