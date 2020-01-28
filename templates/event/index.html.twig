@@ -6,6 +6,8 @@
 {% endblock %}
 {% block body %}
 
+    <div class="index_event">
+
         {% for event in events %}
             <button class="card_button"><a href="{{ path('event_show', {'id': event.id}) }}">
            <div class="card_events">
@@ -22,6 +24,7 @@
     {% if is_granted('ROLE_CLUBER') %}
     <button class="add"><a href="{{ path('event_new') }}"><img src="{{ asset("build/images/add.svg")}}" alt="edit" class="icons"></a></button>
     {% endif %}
+    </div>
 
 {% endblock %}
 {% block javascripts %}

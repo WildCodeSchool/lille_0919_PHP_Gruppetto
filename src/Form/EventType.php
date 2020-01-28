@@ -12,12 +12,16 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type;
 
 class EventType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * Suppress all rules containing "unused" in this
+     * class
+     * @SuppressWarnings("unused")
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -27,7 +31,7 @@ class EventType extends AbstractType
                 'required'=>true,
                 'attr'=> [
                     'placeholder'=> "Nom de l'événement",
-                    'class' => 'green-input'
+                    'class' => 'name_event'
                 ]
             ])
             ->add('levelEvent', NumberType::class, [
@@ -45,7 +49,7 @@ class EventType extends AbstractType
                     'class' => ''
                 ]
             ])
-            ->add('timeEvent', DateType::class, [
+            ->add('timeEvent', Type\TimeType::class, [
                 'label'=>false,
                 'required' => true,
                 'attr'=> [
@@ -63,7 +67,7 @@ class EventType extends AbstractType
                 'required'=>false,
                 'attr'=> [
                     'placeholder'=> "Description",
-                    'class' => 'green-input'
+                    'class' => 'description_event'
                 ]
             ])
             ->add('participantLimit', NumberType::class, [
@@ -83,9 +87,7 @@ class EventType extends AbstractType
                 ]
             ])
         ;
-        $options = null;
     }
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
