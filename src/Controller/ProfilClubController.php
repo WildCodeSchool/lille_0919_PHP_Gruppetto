@@ -29,7 +29,7 @@ class ProfilClubController extends AbstractController
      * @IsGranted("ROLE_USER")
      */
 
-    public function edit(Request $request,GetUserClub $club): Response
+    public function edit(Request $request, GetUserClub $club): Response
     {
         // create form for profil club
         $club->getClub();
