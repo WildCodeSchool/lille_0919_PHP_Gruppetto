@@ -52,7 +52,10 @@ class UserController extends AbstractController
                 $entityManager->flush();
                 return $this->redirectToRoute('profil_club_edit');
             } else {
-                return $this->redirectToRoute('profil_club_edit');
+                $this->addFlash(
+                    'notice',
+                    'Votre ancien mot de passe ne correspond pas'
+                );
             }
         }
         return $this->render('user/modify.html.twig', [
