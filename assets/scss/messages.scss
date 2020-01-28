@@ -82,9 +82,15 @@ body{
 
                         #user-avatar-cell, #message-icon-cell{
                             text-align: center;
+                            width: 60px;
 
                             img{
                                 vertical-align: bottom;
+                            }
+
+                            .avatar{
+                                max-width: 50px;
+                                border-radius: 50%;
                             }
                         }
 
@@ -93,12 +99,30 @@ body{
                             font-family: 'Roboto', sans-serif;
                             font-size: 21px;
                             font-weight: bold;
+                            width: 80%;
                         }
 
                         .user-last-message{
                             color: $light;
                             font-family: 'Roboto', sans-serif;
                             font-size: 19px;
+                            width: 80%;
+
+                            p{
+                                max-width: 245px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+
+                            @media all and (min-width: 380px){
+                                p{
+                                    min-width: 100%;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                }
+                            }
                         }
 
                         .avatar{
