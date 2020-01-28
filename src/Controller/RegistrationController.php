@@ -9,6 +9,7 @@ use App\Form\InformationClubFormType;
 use App\Form\InformationSoloFormType;
 use App\Form\RegistrationFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -125,11 +126,11 @@ class RegistrationController extends AbstractController
             $entityManager->persist($this->getUser());
             $entityManager->flush();
 
-            $email = (new Email())
-                ->from('hello@example.com')
+            $email = (new TemplatedEmail())
+                ->from(Address::fromString('Gruppetto <g.masson279@gmail.com>'))
                 ->to(new Address($this->getParameter('mailer_from')))
                 ->subject('Gruppetto !')
-                ->text('Félicitations, vous venez de vous inscrire chez Gruppetto!');
+                ->htmlTemplate('emails/registrationMails.html.twig');
             $mailer->send($email);
 
             $this->addFlash(
