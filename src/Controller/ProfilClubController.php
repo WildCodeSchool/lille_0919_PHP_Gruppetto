@@ -9,6 +9,8 @@ use App\Form\UserType;
 use App\Repository\ProfilClubRepository;
 use App\Services\GetUserClub;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -25,14 +27,15 @@ class ProfilClubController extends AbstractController
     /**
      * @Route("/", name="profil_club_edit", methods={"GET","POST"})
      * @param Request $request
+     * @param GetUserClub $club
+     * @param EntityManagerInterface $entityManager
      * @return Response
      * @IsGranted("ROLE_USER")
      */
 
-    public function edit(Request $request, GetUserClub $club): Response
+    public function edit(Request $request, GetUserClub $club, EntityManagerInterface $entityManager): Response
     {
         // create form for profil club
-        $club->getClub();
         $form = $this->createForm(ProfilClubType::class, $club->getClub());
         $form->handleRequest($request);
         $ema = $this->getDoctrine()->getManager();
@@ -48,9 +51,7 @@ class ProfilClubController extends AbstractController
                 $logoFile->move($this->getParameter('upload_directory'), $logoFileName);
                 $thisClub->setLogoClub($logoFileName);
             }
-
-
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
         }
 
         return $this->render('profil_club/show.html.twig', [

@@ -79,6 +79,10 @@ body {
                 font-family: Edmondsans, sans-serif;
                 margin: auto;
 
+                a{
+                    color: $light;
+                }
+
                 h3 {
                     color: $secondary-color;
                 }

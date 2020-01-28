@@ -13,6 +13,15 @@ use Symfony\Component\Validator\Constraints\File;
 
 class ProfilClubType extends AbstractType
 {
+    /**
+     * Suppress all rules containing "unused" in this
+     * class
+     * @SuppressWarnings("unused")
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -38,8 +47,6 @@ class ProfilClubType extends AbstractType
             ])
 
             ->add('descriptionClub', TextareaType::class, ['label'=>null]);
-
-        $options=null;
     }
 
     public function configureOptions(OptionsResolver $resolver)
