@@ -17,7 +17,7 @@ body{
         border:  3px solid $primary-border-color;
         box-sizing: border-box;
         border-radius: 5px;
-        margin: 15% 5% 20% 5%;
+        margin: 70px 5% 20% 5%;
         height: 80%;
 
         //input of add name events
@@ -60,25 +60,35 @@ body{
     top: 581px;
 }
 
-//select of date and time
-select, option{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-color: transparent;
-    background-color: transparent;
-    color: $light;
-}
-
 //group date and time
 .form_group{
     display: flex;
     justify-content: space-evenly;
 }
 
+#event_dateEvent select, option{
+    width: 50px;
+    border-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    color: $light;
+}
+
+#event_timeEvent select, option{
+    width: 50px;
+    border-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    color: $light;
+}
+
 //picture date and time
 .img-date-heure{
-    margin: 5% 5% 5% 19%;
+    margin: 5% 5% 0 19%;
     width: 60px;
     border-radius: 0;
 }
@@ -92,6 +102,17 @@ select, option{
     width: 250px;
     height: 100px;
     margin: 5% 5% 5% 11%;
+}
+
+.sport_choice select, option{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-left: 15%;
+    background-image: url("/build/images/select_arrow.svg");
+    background-size: 10px;
+    background-position: right 10% bottom 45%;
+    background-repeat: no-repeat;
 }
 
 // level of  event
