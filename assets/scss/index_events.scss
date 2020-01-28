@@ -1,0 +1,226 @@
+@import "vars";
+@import "form";
+@import "global";
+
+body{
+    color: $light;
+    margin-top: 70px;
+
+    //index scroll
+    .index_event{
+        overflow-x: scroll;
+    }
+
+    //date & time page index
+    .date_time{
+        color: $secondary-color;
+        text-align: start;
+        font-size: 15px;
+        margin: 0 5% 2% 5%;
+        }
+
+    //name of events
+    .n_event{
+        text-align: start;
+        font-size: 12px;
+        margin: 0 5% 2% 5%;
+        }
+
+    //cards of event in index page
+    .card_events{
+        background: $primary-color95;
+        border:  3px solid $primary-border-color;
+        border-radius: 5px;
+        }
+
+    //button add
+    .add{
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 530px;
+        left: 160px;
+        color: transparent;
+        }
+
+    //line blue
+    hr{
+        width: 90%;
+        height: 2px;
+        background-color: $tertiary-color50;
+        border: none;
+        margin-top: auto;
+        }
+
+    //box green of page show
+    .show_events {
+        background: $primary-color95;
+        border:  3px solid $primary-border-color;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin: 5% 5% 20% 5%;
+        height: 80%;
+        }
+
+    h1{
+        color: $secondary-color;
+        margin-bottom: 0;
+        font-size: 20px;
+        margin-left: 5%;
+        margin-top: 5%;
+        }
+
+    //date & time pag show
+    .date_time_show{
+        margin: 5% 5% 2% 5%;
+        font-size: 12px;
+        }
+
+    //box blue of description show page
+    .descript{
+        background: $primary-color70;
+        border: 1px solid $secondary-border-color;
+        color: $light;
+        border-radius: 5%;
+        width: 250px;
+        height: 100px;
+        margin: 5% 5% 0 11%;
+        text-align: center;
+        
+    }
+
+    p{
+        overflow: hidden;
+    };
+
+    //participation section
+    img{
+        width: 50px;
+        border-radius: 50%;
+        margin-left: 15px ;
+        }
+
+    figure{
+        font-size: 20px;
+        }
+
+
+
+    .but_par{
+        background-color: transparent;
+        border-color: transparent;
+        text-decoration: none;
+        color: $light;
+        }
+
+    .link{
+        background-color: transparent;
+        border-color: transparent;
+        text-decoration: none;
+        color: $light;
+        }
+
+
+
+    //level page show
+    .levl_n{
+        margin: 5% 5% 5% 15%;
+        }
+
+    h2{
+        color: $light;
+        margin-bottom: 0;
+        font-size: 20px;
+        margin-left: 5%;
+        margin-top: 5%;
+        }
+
+    //button of delete
+    .delete{
+        background-image: url('/build/images/delete.36f9db95.svg');
+        background-size: 30px;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 520px;
+        left: 290px;
+        }
+
+    //button  of return
+    .return{
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 520px;
+        left: 30px;
+        }
+
+    .return1{
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 580px;
+        left: 80px;
+    }
+
+    //button of edit
+    .edit{
+        box-sizing: border-box;
+        background-color:$secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 520px;
+        left: 160px;
+        }
+
+    //icon of edit and return
+    .icons{
+        width: 30px;
+        margin: auto;
+        }
+
+    .btn-link{
+        color: $light;
+        text-decoration: none;
+        line-height: 16px;
+        margin-left: 38%;
+    }
+
+    // card page events
+    .card_button{
+        background-color: transparent;
+        border-color: transparent;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin: 10% 5% 0 5%;
+        height: 11%;
+        width: 90%;
+
+        a{
+            color: $light;
+            text-decoration: none;
+            }
+
+        }
+}

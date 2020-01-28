@@ -48,10 +48,17 @@ class User implements UserInterface
      */
     private $profilClubs;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ParticipationLike", mappedBy="user")
+     */
+    private $participationLikes;
+
     public function __construct()
     {
         $this->profilClubs = new ArrayCollection();
+        $this->participationLikes = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -162,6 +169,37 @@ class User implements UserInterface
     {
         if ($this->profilClubs->contains($profilClub)) {
             $this->profilClubs->removeElement($profilClub);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ParticipationLike[]
+     */
+    public function getParticipationLikes(): Collection
+    {
+        return $this->participationLikes;
+    }
+
+    public function addParticipationLike(ParticipationLike $participationLike): self
+    {
+        if (!$this->participationLikes->contains($participationLike)) {
+            $this->participationLikes[] = $participationLike;
+            $participationLike->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipationLike(ParticipationLike $participationLike): self
+    {
+        if ($this->participationLikes->contains($participationLike)) {
+            $this->participationLikes->removeElement($participationLike);
+            // set the owning side to null (unless already changed)
+            if ($participationLike->getUser() === $this) {
+                $participationLike->setUser(null);
+            }
         }
 
         return $this;

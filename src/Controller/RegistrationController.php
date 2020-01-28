@@ -9,10 +9,14 @@ use App\Form\InformationClubFormType;
 use App\Form\InformationSoloFormType;
 use App\Form\RegistrationFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -79,10 +83,12 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register/club/information", name="app_club_register_informations")
      * @param Request $request
+     * @param MailerInterface $mailer
      * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      * @IsGranted("ROLE_REGISTERED")
      */
-    public function informationClub(Request $request): Response
+    public function informationClub(Request $request, MailerInterface $mailer): Response
     {
 
         $this->denyAccessUnlessGranted('ROLE_REGISTERED');
@@ -119,9 +125,17 @@ class RegistrationController extends AbstractController
             $entityManager->persist($profilClub);
             $entityManager->persist($this->getUser());
             $entityManager->flush();
+
+            $email = (new TemplatedEmail())
+                ->from(Address::fromString('Gruppetto <g.masson279@gmail.com>'))
+                ->to(new Address($this->getParameter('mailer_from')))
+                ->subject('Gruppetto !')
+                ->htmlTemplate('emails/registrationMails.html.twig');
+            $mailer->send($email);
+
             $this->addFlash(
                 'notice',
-                "Il ne vous reste plus q'à vous connecter !"
+                "Il ne vous reste plus qu'à vous connecter !"
             );
 
             return $this->redirectToRoute('app_login');
