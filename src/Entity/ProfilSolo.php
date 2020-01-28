@@ -119,7 +119,7 @@ class ProfilSolo
     private $registrationEvent;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ProfilClub", inversedBy="profilSolos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProfilClub", inversedBy="profilSolos", fetch="EAGER")
      */
     private $profilClub;
 
