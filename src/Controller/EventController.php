@@ -41,10 +41,12 @@ class EventController extends AbstractController
     /**
      * @Route("/new", name="event_new", methods={"GET","POST"})
      * @param Request $request
+     * @param GetUserClub $club
+     * @param EntityManagerInterface $entityManager
      * @return Response
      * @IsGranted("ROLE_CLUBER")
      */
-    public function new(Request $request, GetUserClub $club): Response
+    public function new(Request $request, GetUserClub $club, EntityManagerInterface $entityManager): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
