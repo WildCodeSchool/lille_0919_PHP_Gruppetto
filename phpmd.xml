@@ -73,6 +73,5 @@
         </properties>
     </rule>
     <rule ref="rulesets/unusedcode.xml" />
-
     <exclude-pattern>src/Migrations</exclude-pattern>
 </ruleset>

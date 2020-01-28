@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Event;
 use App\Entity\GeneralChatClub;
+use App\Entity\ParticipationLike;
 use App\Entity\ProfilClub;
 use App\Entity\ProfilSolo;
 use App\Entity\Sport;
@@ -61,7 +62,7 @@ class AppFixtures extends Fixture
         ));
         $manager->persist($cluber2);
 
-        // Fixtures for profil club//
+        // Fixtures for profil -(//
         $profilClub = new ProfilClub();
         $profilClub->setNameClub('Run Team');
         $profilClub->setCityClub('Lille');
@@ -81,7 +82,7 @@ class AppFixtures extends Fixture
         $manager->persist($profilClub2);
 
         // Fixtures for profil Solo//
-        $profilSolo= new ProfilSolo();
+        $profilSolo = new ProfilSolo();
         $profilSolo->setLastname('Doe');
         $profilSolo->setFirstname('Jonh');
         $profilSolo->setBirthdate(new DateTime(141220));
@@ -112,7 +113,7 @@ class AppFixtures extends Fixture
         $profilSolo2->setProfilClub($profilClub2);
         $manager->persist($profilSolo2);
 
-        // Creating lambda user
+      // Creating lambda user
         $user = new User();
         $user->setProfilSolo($profilSolo);
         $user->setEmail('john-doe@msn.com');
@@ -122,6 +123,7 @@ class AppFixtures extends Fixture
             'userpassword'
         ));
         $manager->persist($user);
+        $users[] = $user;
 
         // Creating lambda user2
         $user2 = new User();
@@ -135,7 +137,7 @@ class AppFixtures extends Fixture
         $manager->persist($user2);
 
         // Fixtures for sportCategory//
-        $sportCategory=new SportCategory();
+        $sportCategory = new SportCategory();
         $sportCategory->setNameCategory('Running');
         $manager->persist($sportCategory);
 
@@ -165,6 +167,19 @@ class AppFixtures extends Fixture
         $messageClub->setContentMessage('Bonjour, je suis un club de natation');
         $manager->persist($messageClub);
 
+
+        //participation
+        for ($j = 0; $j < mt_rand(0, 10); $j++) {
+            $participationLike = new ParticipationLike();
+
+            $participationLike->setEvent($event)
+                ->setUser($faker->randomElement($users));
+            $manager->persist($participationLike);
+
+
+            $manager->flush();
+        }
+
         $messageClub2 = new GeneralChatClub();
         $messageClub2->setProfilClub($profilClub);
         $messageClub2->setDateMessage(new DateTime('now'));
@@ -176,8 +191,8 @@ class AppFixtures extends Fixture
         $messageSolo->setProfilSolo($profilSolo);
         $messageSolo->setDateMessage(new DateTime('now'));
         $messageSolo->setContentMessage('Bonjour, je suis John.');
-        $manager->persist($messageSolo);
+            $manager->persist($messageSolo);
 
-        $manager->flush();
+            $manager->flush();
     }
 }

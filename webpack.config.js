@@ -20,7 +20,11 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('nav', './assets/js/nav.js')
     .addEntry('messages', './assets/js/messages.js')
+    .addEntry('new_events', './assets/js/new_events.js')
+    .addEntry('edit_events', './assets/js/edit_events.js')
     .addEntry('details', './assets/js/details.js')
+    .addEntry('participation', './assets/js/participation.js')
+
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
