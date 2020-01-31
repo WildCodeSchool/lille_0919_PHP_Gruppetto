@@ -67,8 +67,6 @@
                 {% endfor %}
             </div>
 
-            <h2>Commentaires :</h2>
-            <hr>
             <button class="return"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
             {% if is_granted('ROLE_CLUBER') %}
             {{ include('event/_delete_form.html.twig') }}
