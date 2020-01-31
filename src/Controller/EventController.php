@@ -9,6 +9,7 @@ use App\Entity\ParticipationLike;
 use App\Entity\ProfilSolo;
 use App\Form\CommentType;
 use App\Form\EventType;
+use App\Repository\CommentRepository;
 use App\Repository\EventRepository;
 use App\Repository\ParticipationLikeRepository;
 use App\Services\GetUserClub;
@@ -76,13 +77,19 @@ class EventController extends AbstractController
      * @param EventRepository $eventRepository
      * @param Event $event
      * @param Request $request
+     * @param CommentRepository $comments
+     * @param EntityManagerInterface $entityManager
      * @return Response
      * @throws \Exception
-     * @return Response
      * @IsGranted("ROLE_USER")
      */
-    public function show(EventRepository $eventRepository, Event $event, Request $request): Response
-    {
+    public function show(
+        EventRepository $eventRepository,
+        Event $event,
+        Request $request,
+        CommentRepository $comments,
+        EntityManagerInterface $entityManager
+    ) : Response {
 
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);

@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,9 +28,10 @@ class BookingController extends AbstractController
     /**
      * @Route("/booking/new", name="booking_new", methods={"GET","POST"})
      * @param Request $request
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
@@ -82,9 +84,10 @@ class BookingController extends AbstractController
      * @Route("/booking/delete/{id}", name="booking_delete", methods={"DELETE"})
      * @param Request $request
      * @param Booking $booking
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function delete(Request $request, Booking $booking): Response
+    public function delete(Request $request, Booking $booking, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$booking->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
