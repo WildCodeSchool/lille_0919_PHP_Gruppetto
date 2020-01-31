@@ -38,8 +38,8 @@ class ProfilClubController extends AbstractController
         // create form for profil club
         $form = $this->createForm(ProfilClubType::class, $club->getClub());
         $form->handleRequest($request);
-        $ema = $this->getDoctrine()->getManager();
-        $thisClub = $ema->getRepository(ProfilClub::class)
+        $entityManager = $this->getDoctrine()->getManager();
+        $thisClub = $entityManager->getRepository(ProfilClub::class)
             ->find($club->getClub());
 
         if ($form->isSubmitted() && $form->isValid()) {
