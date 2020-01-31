@@ -124,7 +124,7 @@ class AppFixtures extends Fixture
             'userpassword'
         ));
         $manager->persist($user);
-        $users[] = $user;
+       // $users[] = $user;
 
         // Creating lambda user2
         $user2 = new User();
@@ -170,7 +170,7 @@ class AppFixtures extends Fixture
 
 
         //participation
-        for ($j = 0; $j < mt_rand(0, 10); $j++) {
+       /* for ($j = 0; $j < mt_rand(0, 10); $j++) {
             $participationLike = new ParticipationLike();
 
             $participationLike->setEvent($event)
@@ -179,7 +179,7 @@ class AppFixtures extends Fixture
 
 
             $manager->flush();
-        }
+        }*/
 
         $messageClub2 = new GeneralChatClub();
         $messageClub2->setProfilClub($profilClub);
