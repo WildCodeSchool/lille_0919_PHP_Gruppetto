@@ -527,6 +527,15 @@
     "symfony/security-http": {
         "version": "v4.2.8"
     },
+    "symfony/sendgrid-mailer": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "b46e4f8f1adb2864f0aa9c0ff57aea3324a07199"
+        }
+    },
     "symfony/serializer": {
         "version": "v4.2.8"
     },
@@ -644,6 +653,7 @@
     "symfony/yaml": {
         "version": "v4.2.8"
     },
+
     "tattali/calendar-bundle": {
         "version": "1.1",
         "recipe": {
@@ -655,14 +665,8 @@
         "files": [
             "config/routes/calendar.yaml"
         ]
-
-    "tijsverkoyen/css-to-inline-styles": {
-        "version": "2.2.2"
     },
-    "twig/cssinliner-extra": {
-        "version": "v3.0.1"
 
-    },
     "tijsverkoyen/css-to-inline-styles": {
         "version": "2.2.2"
     },
