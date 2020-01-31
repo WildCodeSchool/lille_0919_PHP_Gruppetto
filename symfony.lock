@@ -655,6 +655,13 @@
         "files": [
             "config/routes/calendar.yaml"
         ]
+
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.2"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.0.1"
+
     },
     "tijsverkoyen/css-to-inline-styles": {
         "version": "2.2.2"

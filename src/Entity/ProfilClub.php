@@ -64,7 +64,7 @@ class ProfilClub
     private $events;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProfilSolo", mappedBy="profilClub")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProfilSolo", mappedBy="profilClub", fetch="EAGER")
      */
     private $profilSolos;
 
