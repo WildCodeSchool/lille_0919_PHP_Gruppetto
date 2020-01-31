@@ -128,7 +128,7 @@ class RegistrationController extends AbstractController
 
             $email = (new TemplatedEmail())
                 ->from(Address::fromString('Gruppetto <g.masson279@gmail.com>'))
-                ->to(new Address($this->getParameter('mailer_from')))
+                ->to($this->getUser()->getEmail(''))
                 ->subject('Gruppetto !')
                 ->htmlTemplate('emails/registrationMails.html.twig');
             $mailer->send($email);
