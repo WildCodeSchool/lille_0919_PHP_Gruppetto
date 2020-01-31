@@ -113,6 +113,7 @@ class AppFixtures extends Fixture
         $profilSolo2->setProfilClub($profilClub2);
         $manager->persist($profilSolo2);
 
+
       // Creating lambda user
         $user = new User();
         $user->setProfilSolo($profilSolo);
@@ -122,8 +123,11 @@ class AppFixtures extends Fixture
             $user,
             'userpassword'
         ));
+
+        /*
         $manager->persist($user);
         $users[] = $user;
+     */
 
         // Creating lambda user2
         $user2 = new User();
@@ -168,6 +172,7 @@ class AppFixtures extends Fixture
         $manager->persist($messageClub);
 
 
+        /*
         //participation
         for ($j = 0; $j < mt_rand(0, 10); $j++) {
             $participationLike = new ParticipationLike();
@@ -179,6 +184,8 @@ class AppFixtures extends Fixture
 
             $manager->flush();
         }
+
+        */
 
         $messageClub2 = new GeneralChatClub();
         $messageClub2->setProfilClub($profilClub);
