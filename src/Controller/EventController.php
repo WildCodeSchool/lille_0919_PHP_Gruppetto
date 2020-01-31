@@ -91,6 +91,7 @@ class EventController extends AbstractController
             ->findBy(['event'=>$event]);
 
         $creatorSolo = $this->getUser()->getProfilSolo();
+        $participants = $this->getParticipants($event);
 
 
         if ($form->isSubmitted() && $form->isValid() && ($form['content']->getData()) != null) {
@@ -103,18 +104,11 @@ class EventController extends AbstractController
             $entityManager->flush();
         }
 
-            return $this->render('event/show.html.twig', [
-            'events' => $eventRepository->findAll(),
-            'form' => $form->createView(),
-            'comments' => $comments,
-            'event' => $event
-            ]);
-
-        $participants = $this->getParticipants($event);
-
         return $this->render('event/show.html.twig', [
             'events' => $eventRepository->findAll(),
             'event' => $event,
+            'form' => $form->createView(),
+            'comments' => $comments,
             'participants' => $participants
         ]);
     }
