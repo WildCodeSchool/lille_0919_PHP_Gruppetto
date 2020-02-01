@@ -192,6 +192,7 @@ class EventController extends AbstractController
      * @param ObjectManager $manager
      * @param ParticipationLikeRepository $participationRepo
      * @return Response
+     * @IsGranted("ROLE_USER")
      */
     public function participation(
         Event $event,
