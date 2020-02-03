@@ -17,8 +17,10 @@
 
         <div class="participation">
 
+            {% if is_granted('ROLE_CLUBER') %}
+                <p class="nb_participant">N° de particpant : {{ event.participationLikes | length }}/{{ event.participantLimit }} </p>
+            {% else %}
             <a href="{{ path('event_participe', {'id' : event.id}) }}" class="btn-link js-participe">
-
                 {% if app.user and event.isParticipationByUser(app.user) %}
                     <i class="fas fa-check-circle"></i>
                 {% else %}
@@ -27,10 +29,15 @@
                 {% if event.participantLimit >  event.participationLikes | length  %}
                 <span class="js-participationLikes">{{ event.participationLikes | length }}</span> / {{ event.participantLimit }}
                 {% else %}
-                    <p>Nombre limite de participants atteint :</p>{{ event.participationLikes | length }}/{{ event.participantLimit }}
+                    <p class="limit">Limite atteinte : {{ event.participationLikes | length }}/{{ event.participantLimit }}</p>
                 {% endif %}
-
             </a>
+            {% endif %}
+            <div id="participants">
+                {% for participant in participants %}
+                    <img src="{{ participant.avatar }}" alt="{{ participant.firstname }} {{ participant.lastname }}">
+                {% endfor %}
+            </div>
 
             <h2>Commentaire :</h2>
             <hr>
@@ -40,10 +47,8 @@
                     <div class="comment">
                         <ul>
                             <li>
-
                             <p class="name_comment">  {{ comment.profilSolo.lastName}}  {{ comment.profilSolo.firstName}} <br></p>
                             <p class="content_comment"> {{ comment.content }}</p>
-
                        </li>
                         </ul>
 
@@ -55,26 +60,23 @@
 
                 {{ form_start(form) }}
                 {{ form_widget(form.content) }}
-                 <button class="add_comment">{{ button_label|default('Publier') }} </button>
-
+                 <button class="add_comment">{{ button_label|default('')}}<img src="{{ asset("build/images/send-message-icon.svg")}}" alt="send" class="icons"> </button>
 
                 <div class="alert alert-danger">{{ form_rest(form) }}</div>
                 {{ form_end(form) }}
             </div>
 
-            <div id="participants">
-                {% for participant in participants %}
-                    <img src="{{ participant.avatar }}" alt="{{ participant.firstname }} {{ participant.lastname }}">
-                {% endfor %}
-            </div>
 
-            <button class="return"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
             {% if is_granted('ROLE_CLUBER') %}
+            <button class="return"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
             {{ include('event/_delete_form.html.twig') }}
             <button class="edit"><a href="{{ path('event_edit', {'id': event.id}) }}"><img src="{{ asset("build/images/btn-modif.svg")}}" alt="edit" class="icons"></a></button>
+            {% else %}
+                <button class="return_show"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
             {% endif %}
         </div>
     </div>
+
 {% endblock %}
 {% block javascripts %}
          {{ encore_entry_script_tags('participation') }}
