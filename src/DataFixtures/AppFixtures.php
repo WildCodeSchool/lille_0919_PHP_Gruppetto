@@ -97,8 +97,24 @@ class AppFixtures extends Fixture
         $profilSolo->setProfilClub($profilClub2);
         $manager->persist($profilSolo);
 
-       // $users = [];
-        // Creating lambda user
+        // Fixtures for profil Solo2//
+        $profilSolo2= new ProfilSolo();
+        $profilSolo2->setLastname('Franz');
+        $profilSolo2->setFirstname('Albert');
+        $profilSolo2->setBirthdate(new DateTime(141220));
+        $profilSolo2->setDescription('Je suis Albert');
+        $profilSolo2->setGender(0);
+        $profilSolo2->setAvatar('https://randomuser.me/api/portraits/men/97.jpg');
+        $profilSolo2->setEmergencyContactName('Pascale Dino');
+        $profilSolo2->setLevel(1);
+        $profilSolo2->setSportFrequency(2);
+        $profilSolo2->setPhone('0000000000');
+        $profilSolo2->setEmergencyPhone('0000000000');
+        $profilSolo2->setProfilClub($profilClub2);
+        $manager->persist($profilSolo2);
+
+
+      // Creating lambda user
         $user = new User();
         $user->setProfilSolo($profilSolo);
         $user->setEmail('john-doe@msn.com');
@@ -107,8 +123,21 @@ class AppFixtures extends Fixture
             $user,
             'userpassword'
         ));
+
+       
         $manager->persist($user);
-        //$users[] = $user;
+
+
+        // Creating lambda user2
+        $user2 = new User();
+        $user2->setProfilSolo($profilSolo2);
+        $user2->setEmail('albert@msn.com');
+        $user2->setRoles(['ROLE_USER']);
+        $user2->setPassword($this->passwordEncoder->encodePassword(
+            $user2,
+            'userpassword'
+        ));
+        $manager->persist($user2);
 
         // Fixtures for sportCategory//
         $sportCategory = new SportCategory();
@@ -142,6 +171,7 @@ class AppFixtures extends Fixture
         $manager->persist($messageClub);
 
 
+        /*
         //participation
         /*for ($j = 0; $j < mt_rand(0, 10); $j++) {
             $participationLike = new ParticipationLike();
@@ -153,6 +183,8 @@ class AppFixtures extends Fixture
 
             $manager->flush();
         }*/
+
+        */
 
         $messageClub2 = new GeneralChatClub();
         $messageClub2->setProfilClub($profilClub);
