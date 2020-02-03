@@ -102,7 +102,6 @@ class EventController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid() && ($form['content']->getData()) != null) {
-            $entityManager = $this->getDoctrine()->getManager();
             $comment->setContent($_POST['comment']['content']);
             $comment->setDateComment(new DateTime('now'));
             $comment->setEvent($event);
