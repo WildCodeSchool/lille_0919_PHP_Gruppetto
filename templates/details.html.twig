@@ -68,13 +68,15 @@
         </section>
         <button class="accordion">Nous contacter</button>
         <form method="post" class="panel contact">
-           <div>{{ form_start(email_form) }}</div>
+            <br>
+           <div class="phName">{{ form_start(email_form) }}</div>
             <div>{{ form_widget(email_form) }}</div>
-            <input type="submit" value="Send"/>
+            <input class="send" type="submit" value="Envoyer"/>
+            <br>
             <div>{{ form_end(email_form) }}</div>
         </form>
         <a class="backDetail" href="{{path('event')}}">
-            <img class="return" src="{{asset("build/images/back-arrow-icon.blue.09d0f3da.svg")}}" alt="return">
+            <img class="return" src="{{asset("build/images/back-arrow-icon-blue.ed1a350b.svg")}}" alt="return">
         </a>
     </section>
 {% endblock body %}
