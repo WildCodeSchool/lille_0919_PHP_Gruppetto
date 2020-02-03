@@ -5,7 +5,7 @@
     {{ encore_entry_link_tags('new_events') }}
 {% endblock %}
 {% block body %}
-
+    {% include 'navbar/_navbar.html.twig' %}
     <div class="index_event">
 
         {% for event in events %}

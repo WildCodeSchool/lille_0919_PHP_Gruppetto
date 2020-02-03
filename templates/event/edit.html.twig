@@ -5,7 +5,7 @@
     {{ encore_entry_link_tags('edit_events') }}
 {% endblock %}
 {% block body %}
-
+    {% include 'navbar/_navbar.html.twig' %}
     <div class="edit">
     {{ include('event/_form.html.twig', {'button_label': ' '}) }}
 

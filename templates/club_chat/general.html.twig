@@ -1,4 +1,4 @@
-{% extends 'club_chat/modify.html.twig' %}
+{% extends 'club_chat/index.html.twig' %}
 
 {% block greenBox %}
     <section class="green-box general-chat-section" id="messages-section">
@@ -17,7 +17,7 @@
         {% if is_granted('ROLE_CLUBER') %}
             <input type="hidden" value="{{ app.user.profilClubs.owner.profilClubs.snapshot[0].id }}" name="profilClub">
         {% elseif is_granted('ROLE_USER') %}
-                <input type="hidden" value="{{ app.user.profilClubs.owner.profilSolo.profilClub.id }}" name="profilClub">
+            <input type="hidden" value="{{ app.user.profilClubs.owner.profilSolo.profilClub.id }}" name="profilClub">
         {% endif %}
 
         <div class="input-message-bar">

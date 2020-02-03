@@ -6,14 +6,17 @@ use App\Entity\Booking;
 use App\Entity\Comment;
 use App\Entity\Event;
 use App\Entity\ParticipationLike;
+use App\Entity\ProfilClub;
 use App\Entity\ProfilSolo;
 use App\Form\CommentType;
 use App\Form\EventType;
 use App\Repository\CommentRepository;
 use App\Repository\EventRepository;
 use App\Repository\ParticipationLikeRepository;
+use App\Repository\ProfilClubRepository;
 use App\Services\GetUserClub;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,13 +36,16 @@ class EventController extends AbstractController
      * @return Response
      * @IsGranted("ROLE_USER")
      */
-    public function index(GetUserClub $club): Response
+    public function index(GetUserClub $club, ProfilClubRepository $profilClubRepository): Response
     {
+
+        $thisClub = $profilClubRepository->find($club->getClub());
         $ema = $this->getDoctrine()->getManager();
         $events = $ema->getRepository(Event::class)
             ->findBy(['creatorClub'=>$club->getClub()]);
         return $this->render('event/index.html.twig', [
             'events' => $events,
+            'profil_club'=>$thisClub
         ]);
     }
 
@@ -51,8 +57,13 @@ class EventController extends AbstractController
      * @return Response
      * @IsGranted("ROLE_CLUBER")
      */
-    public function new(Request $request, GetUserClub $club, EntityManagerInterface $entityManager): Response
-    {
+    public function new(
+        Request $request,
+        GetUserClub $club,
+        ProfilClubRepository $profilClubRepository,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $thisClub = $profilClubRepository->find($club->getClub());
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -68,6 +79,7 @@ class EventController extends AbstractController
         return $this->render('event/new.html.twig', [
 
             'form' => $form->createView(),
+            'profil_club'=>$thisClub
         ]);
     }
 
@@ -87,14 +99,16 @@ class EventController extends AbstractController
         Event $event,
         Request $request,
         CommentRepository $comments,
+        ProfilClubRepository $profilClubRepository,
+        GetUserClub $club,
         EntityManagerInterface $entityManager
     ) : Response {
 
+        $thisClub = $profilClubRepository->find($club->getClub());
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-        $comments = $this->getDoctrine()->getRepository(Comment::class)
-            ->findBy(['event'=>$event]);
+        $commentsList = $comments->findBy(['event'=>$event]);
 
         $creatorSolo = $this->getUser()->getProfilSolo();
         $participants = $this->getParticipants($event);
@@ -113,8 +127,9 @@ class EventController extends AbstractController
             'events' => $eventRepository->findAll(),
             'event' => $event,
             'form' => $form->createView(),
-            'comments' => $comments,
-            'participants' => $participants
+            'comments' => $commentsList,
+            'participants' => $participants,
+            'profil_club'=>$thisClub
         ]);
     }
 
@@ -148,8 +163,15 @@ class EventController extends AbstractController
      * @return Response
      * @IsGranted("ROLE_CLUBER")
      */
-    public function edit(Request $request, Event $event): Response
-    {
+    public function edit(
+        Request $request,
+        Event $event,
+        EntityManagerInterface $entityManager,
+        GetUserClub $club
+    ): Response {
+
+        $thisClub = $entityManager->getRepository(ProfilClub::class)
+            ->find($club->getClub());
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
@@ -162,6 +184,7 @@ class EventController extends AbstractController
         return $this->render('event/edit.html.twig', [
             'event' => $event,
             'form' => $form->createView(),
+            'profil_club'=>$thisClub
         ]);
     }
 

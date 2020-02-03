@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\GeneralChatClub;
+use App\Entity\ProfilClub;
 use App\Form\GeneralChatType;
 use App\Repository\GeneralChatClubRepository;
 use App\Repository\ProfilClubRepository;
 use App\Repository\ProfilSoloRepository;
 use App\Services\GetUserClub;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,9 +29,11 @@ class ClubChatController extends AbstractController
      * @Route("", name="")
      * @return Response
      */
-    public function chat(): Response
+    public function chat(ProfilClubRepository $profilClubRepository, GetUserClub $club): Response
     {
+        $thisClub = $profilClubRepository->find($club->getClub());
         return $this->render('club_chat/index.html.twig', [
+            'profil_club'=>$thisClub
         ]);
     }
 
@@ -40,8 +44,11 @@ class ClubChatController extends AbstractController
     public function chatGeneral(
         GeneralChatClubRepository $clubRepository,
         Request $request,
-        GetUserClub $club
+        GetUserClub $club,
+        ProfilClubRepository $profilClubRepository
     ): Response {
+        $thisClub = $profilClubRepository->find($club->getClub());
+
         $messages = $clubRepository->findBy(['profilClub' => $club->getClub()]);
         $newMessage = new GeneralChatClub();
         $form = $this->createForm(GeneralChatType::class, $newMessage);
@@ -67,6 +74,7 @@ class ClubChatController extends AbstractController
         return $this->render('club_chat/general.html.twig', [
             'messages' => $messages,
             'form' => $form->createView(),
+            'profil_club'=>$thisClub
         ]);
     }
 

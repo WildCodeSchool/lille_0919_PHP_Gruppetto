@@ -1,6 +1,7 @@
 @import "vars";
 @import "form";
 @import "global";
+@import "nav";
 
 body{
     color: $light;
@@ -96,7 +97,7 @@ body{
         height: 100px;
         margin: 5% 5% 0 11%;
         text-align: center;
-        
+
     }
 
     p{
