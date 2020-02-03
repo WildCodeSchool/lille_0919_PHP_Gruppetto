@@ -127,7 +127,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             $email = (new TemplatedEmail())
-                ->from(Address::fromString('Gruppetto <g.masson279@gmail.com>'))
+                ->from(Address::fromString('Gruppetto <gruppetto.community@gmail.com>'))
                 ->to($this->getUser()->getEmail(''))
                 ->subject('Gruppetto !')
                 ->htmlTemplate('emails/registrationMails.html.twig');
