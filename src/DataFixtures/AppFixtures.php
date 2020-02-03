@@ -28,8 +28,9 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        // fFixtures for profil club//
 
-        $faker = Faker\Factory::create('en_US');
+            $faker = Faker\Factory::create('en_US');
 
         // Creating admin user
         $admin = new User();
@@ -127,7 +128,8 @@ class AppFixtures extends Fixture
        
         $manager->persist($user);
 
-
+        $users[] = $user;
+     
         // Creating lambda user2
         $user2 = new User();
         $user2->setProfilSolo($profilSolo2);
@@ -170,8 +172,7 @@ class AppFixtures extends Fixture
         $messageClub->setContentMessage('Bonjour, je suis un club de natation');
         $manager->persist($messageClub);
 
-
-        /*
+       
         //participation
         /*for ($j = 0; $j < mt_rand(0, 10); $j++) {
             $participationLike = new ParticipationLike();

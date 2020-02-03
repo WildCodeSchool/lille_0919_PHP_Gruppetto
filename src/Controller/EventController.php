@@ -35,7 +35,6 @@ class EventController extends AbstractController
      */
     public function index(GetUserClub $club): Response
     {
-
         $ema = $this->getDoctrine()->getManager();
         $events = $ema->getRepository(Event::class)
             ->findBy(['creatorClub'=>$club->getClub()]);
