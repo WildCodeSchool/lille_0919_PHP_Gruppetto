@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use App\Entity\Comment;
 use App\Entity\Event;
 use App\Entity\ParticipationLike;
+use App\Entity\ProfilClub;
 use App\Entity\ProfilSolo;
 use App\Form\CommentType;
 use App\Form\EventType;
@@ -33,13 +34,17 @@ class EventController extends AbstractController
      * @return Response
      * @IsGranted("ROLE_USER")
      */
-    public function index(GetUserClub $club): Response
+    public function index(GetUserClub $club, EntityManagerInterface $entityManager): Response
     {
+
+        $thisClub = $entityManager->getRepository(ProfilClub::class)
+            ->find($club->getClub());
         $ema = $this->getDoctrine()->getManager();
         $events = $ema->getRepository(Event::class)
             ->findBy(['creatorClub'=>$club->getClub()]);
         return $this->render('event/index.html.twig', [
             'events' => $events,
+            'profil_club'=>$thisClub
         ]);
     }
 
@@ -53,6 +58,8 @@ class EventController extends AbstractController
      */
     public function new(Request $request, GetUserClub $club, EntityManagerInterface $entityManager): Response
     {
+        $thisClub = $entityManager->getRepository(ProfilClub::class)
+            ->find($club->getClub());
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -68,6 +75,7 @@ class EventController extends AbstractController
         return $this->render('event/new.html.twig', [
 
             'form' => $form->createView(),
+            'profil_club'=>$thisClub
         ]);
     }
 
@@ -87,9 +95,12 @@ class EventController extends AbstractController
         Event $event,
         Request $request,
         CommentRepository $comments,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        GetUserClub $club
     ) : Response {
 
+        $thisClub = $entityManager->getRepository(ProfilClub::class)
+            ->find($club->getClub());
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -114,7 +125,8 @@ class EventController extends AbstractController
             'event' => $event,
             'form' => $form->createView(),
             'comments' => $comments,
-            'participants' => $participants
+            'participants' => $participants,
+            'profil_club'=>$thisClub
         ]);
     }
 
@@ -148,8 +160,15 @@ class EventController extends AbstractController
      * @return Response
      * @IsGranted("ROLE_CLUBER")
      */
-    public function edit(Request $request, Event $event): Response
-    {
+    public function edit(
+        Request $request,
+        Event $event,
+        EntityManagerInterface $entityManager,
+        GetUserClub $club
+    ): Response {
+
+        $thisClub = $entityManager->getRepository(ProfilClub::class)
+            ->find($club->getClub());
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
@@ -162,6 +181,7 @@ class EventController extends AbstractController
         return $this->render('event/edit.html.twig', [
             'event' => $event,
             'form' => $form->createView(),
+            'profil_club'=>$thisClub
         ]);
     }
 

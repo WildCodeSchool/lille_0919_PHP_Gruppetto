@@ -45,8 +45,12 @@ class ClubChatController extends AbstractController
     public function chatGeneral(
         GeneralChatClubRepository $clubRepository,
         Request $request,
-        GetUserClub $club
+        GetUserClub $club,
+        EntityManagerInterface $entityManager
     ): Response {
+        $thisClub = $entityManager->getRepository(ProfilClub::class)
+            ->find($club->getClub());
+
         $messages = $clubRepository->findBy(['profilClub' => $club->getClub()]);
         $newMessage = new GeneralChatClub();
         $form = $this->createForm(GeneralChatType::class, $newMessage);
@@ -72,6 +76,7 @@ class ClubChatController extends AbstractController
         return $this->render('club_chat/general.html.twig', [
             'messages' => $messages,
             'form' => $form->createView(),
+            'profil_club'=>$thisClub
         ]);
     }
 
