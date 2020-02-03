@@ -207,6 +207,45 @@ body{
         margin-left: 38%;
     }
 
+    //comments
+    .content_comment{
+        text-align: center;
+    }
+
+    .name_comment{
+        margin-left: 1%;
+        text-align: start;
+    }
+
+    .content_comments{
+        height: 20%;
+        width: 90%;
+        margin: 0 0 0 5%;
+    }
+
+    .add_comment{
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    .comment{
+        background: $tertiary-color50;
+        border: 1px solid $tertiary-color50;
+        color: $light;
+        border-radius: 5%;
+        width: 250px;
+        height: 40px;
+        margin: 5% 5% 5% 11%;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .scroll_comment{
+        overflow-y: scroll;
+        height: 150px;
+
+    }
+
     // card page events
     .card_button{
         background-color: transparent;

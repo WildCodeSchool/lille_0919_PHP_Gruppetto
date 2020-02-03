@@ -5,7 +5,9 @@
     {{ encore_entry_link_tags('new_events') }}
 {% endblock %}
 {% block body %}
+
     <div class="index_event">
+
         {% for event in events %}
             <button class="card_button"><a href="{{ path('event_show', {'id': event.id}) }}">
            <div class="card_events">
@@ -23,6 +25,7 @@
     <button class="add"><a href="{{ path('event_new') }}"><img src="{{ asset("build/images/add.svg")}}" alt="edit" class="icons"></a></button>
     {% endif %}
     </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('new_events') }}

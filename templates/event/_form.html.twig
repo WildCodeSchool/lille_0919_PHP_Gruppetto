@@ -1,5 +1,11 @@
 {{ form_start(form)}}
 <div class="form_group1">
+
+    <label for="{{ form.nameEvent.vars.id }}"></label>
+    {{ form_widget(form.nameEvent) }}
+    <hr>
+
+    {% do form.nameEvent.setRendered %}
     {{ form_errors(form.nameEvent) }}
     {{ form_widget(form.nameEvent) }}
     <hr>
