@@ -173,7 +173,6 @@ class AppFixtures extends Fixture
         $messageClub->setContentMessage('Bonjour, je suis un club de natation');
         $manager->persist($messageClub);
 
-
         /*
         //participation
        /* for ($j = 0; $j < mt_rand(0, 10); $j++) {
@@ -187,7 +186,6 @@ class AppFixtures extends Fixture
             $manager->flush();
         }*/
 
-        */
 
         $messageClub2 = new GeneralChatClub();
         $messageClub2->setProfilClub($profilClub);
