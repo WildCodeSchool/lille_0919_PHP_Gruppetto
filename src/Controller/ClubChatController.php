@@ -29,10 +29,9 @@ class ClubChatController extends AbstractController
      * @Route("", name="")
      * @return Response
      */
-    public function chat(EntityManagerInterface $entityManager, GetUserClub $club): Response
+    public function chat(ProfilClubRepository $profilClubRepository, GetUserClub $club): Response
     {
-        $thisClub = $entityManager->getRepository(ProfilClub::class)
-            ->find($club->getClub());
+        $thisClub = $profilClubRepository->find($club->getClub());
         return $this->render('club_chat/index.html.twig', [
             'profil_club'=>$thisClub
         ]);
@@ -46,10 +45,9 @@ class ClubChatController extends AbstractController
         GeneralChatClubRepository $clubRepository,
         Request $request,
         GetUserClub $club,
-        EntityManagerInterface $entityManager
+        ProfilClubRepository $profilClubRepository
     ): Response {
-        $thisClub = $entityManager->getRepository(ProfilClub::class)
-            ->find($club->getClub());
+        $thisClub = $profilClubRepository->find($club->getClub());
 
         $messages = $clubRepository->findBy(['profilClub' => $club->getClub()]);
         $newMessage = new GeneralChatClub();
