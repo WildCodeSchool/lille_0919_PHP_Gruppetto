@@ -6,6 +6,8 @@
 * {
     padding: 0;
     margin: 0;
+    overflow: hidden;
+
 }
 
 body {
@@ -40,6 +42,27 @@ body {
             }
         }
     }
+
+    .container-more {
+
+        height: 500px;
+        text-align: right;
+
+
+        .more {
+            padding: 10px;
+            font-size: 15px;
+            color: $secondary-color;
+            text-decoration: none;
+        }
+
+        .more:active {
+            color: $secondary-border-color;
+            text-decoration: none;
+        }
+
+    }
+
 
     .logo-block {
         z-index: 2;

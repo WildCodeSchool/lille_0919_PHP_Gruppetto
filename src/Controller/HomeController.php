@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Form\ContactType;
 use App\Repository\MailerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -43,10 +44,30 @@ class HomeController extends AbstractController
     {
 
         $form = $this->createFormBuilder()
-            ->add('nom', TextType::class)
-            ->add('sujet', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('message', TextareaType::class)
+            ->add('name', TextType::class, [
+                    'label'   => false,
+                    'attr' => [
+                        'placeholder' => 'Nom',
+                        'class' => 'phMailer' ]
+                ])
+            ->add('subject', TextType::class, [
+                'label'   => false,
+                'attr' => [
+                    'placeholder' => 'Sujet',
+                    'class' => 'phMailer' ]
+            ])
+            ->add('email', EmailType::class, [
+                    'label'   => false,
+                    'attr' => [
+                        'placeholder' => 'Email',
+                        'class' => 'phMailer' ]
+                ])
+            ->add('message', TextareaType::class, [
+                    'label'   => false,
+                    'attr' => [
+                    'placeholder' => 'Message',
+                    'class' => 'phMessage' ]
+            ])
             ->getForm();
 
         $form->handleRequest($request);
@@ -55,7 +76,7 @@ class HomeController extends AbstractController
             $data = $form->getData();
 
             $email = (new Email())
-                ->from(new Address($data['email'], $data['nom']))
+                ->from(new Address($data['email'], $data['name']))
                 ->to('gruppetto@gruppetto.com')
                 ->subject('Contact')
                 ->text($data['message'])

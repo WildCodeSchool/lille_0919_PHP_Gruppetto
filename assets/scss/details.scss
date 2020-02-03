@@ -1,7 +1,9 @@
 @import "vars";
 @import "app";
 
-
+* {
+    overflow: visible;
+}
 
 // Start Details CSS
 body {
@@ -58,6 +60,27 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+
+        .phMailer {
+            margin-bottom: 7px;
+            margin-top: 10px;
+            width: 300px;
+        }
+
+        .phMessage {
+            margin-bottom: 7px;
+            margin-top: 10px;
+            height: 100px;
+            width: 300px;
+        }
+
+        .send {
+            width: 100px;
+            padding: 5px;
+            margin-top: 10px;
+        }
+
     }
 
     .backDetail {
