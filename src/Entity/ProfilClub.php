@@ -29,7 +29,7 @@ class ProfilClub
     private $cityClub;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $logoClub;
 
@@ -64,7 +64,7 @@ class ProfilClub
     private $events;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProfilSolo", mappedBy="profilClub")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProfilSolo", mappedBy="profilClub", fetch="EAGER")
      */
     private $profilSolos;
 
@@ -104,6 +104,7 @@ class ProfilClub
 
         return $this;
     }
+    /* For logo file*/
 
     public function getLogoClub(): ?string
     {

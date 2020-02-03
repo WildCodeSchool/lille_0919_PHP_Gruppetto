@@ -5,7 +5,7 @@
 
 // Start Details CSS
 body {
-    height: 0;
+    max-height: 0;
 }
 
 .information {
@@ -15,8 +15,9 @@ body {
     border-radius: 5px;
     border: $secondary-border-color solid 3px;
     text-align: center;
-    width: 120px;
+    width: 150px;
     font-size: 18px;
+    padding: 10px;
 }
 
 .details {
@@ -51,6 +52,12 @@ body {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.2s ease-out;
+    }
+
+    .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .backDetail {

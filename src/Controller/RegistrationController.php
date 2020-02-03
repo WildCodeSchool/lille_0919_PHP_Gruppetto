@@ -90,7 +90,6 @@ class RegistrationController extends AbstractController
      */
     public function informationClub(Request $request, MailerInterface $mailer): Response
     {
-
         $this->denyAccessUnlessGranted('ROLE_REGISTERED');
 
         $profilClub = new ProfilClub();
