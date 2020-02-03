@@ -14,17 +14,22 @@ body{
     //date & time page index
     .date_time{
         color: $secondary-color;
-        text-align: start;
-        font-size: 15px;
+        text-align: center;
+        font-size: 19px;
         margin: 0 5% 2% 5%;
         }
 
     //name of events
     .n_event{
-        text-align: start;
-        font-size: 12px;
+        text-align: center;
+        font-size: 15px;
         margin: 0 5% 2% 5%;
         }
+
+    .level_ni{
+        text-align: end;
+        margin-right: 4%;
+    }
 
     //cards of event in index page
     .card_events{
@@ -43,7 +48,8 @@ body{
         height: 50px;
         position: absolute;
         top: 530px;
-        left: 160px;
+        left: 170px;
+        bottom: 0;
         color: transparent;
         }
 
