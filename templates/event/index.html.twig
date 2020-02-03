@@ -5,6 +5,7 @@
     {{ encore_entry_link_tags('new_events') }}
 {% endblock %}
 {% block body %}
+    {% include 'navbar/_navbar.html.twig' %}
     <div class="index_event">
         {% for event in events %}
             <button class="card_button"><a href="{{ path('event_show', {'id': event.id}) }}">
