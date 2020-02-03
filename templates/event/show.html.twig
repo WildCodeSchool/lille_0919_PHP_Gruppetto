@@ -15,9 +15,10 @@
         <p class="descript">{{ event.description }}</p>
 
         <div class="participation">
-
+            {% if is_granted('ROLE_CLUBER') %}
+                <p>Nombre de particpant : {{ event.participationLikes | length }}/{{ event.participantLimit }} </p>
+            {% else %}
             <a href="{{ path('event_participe', {'id' : event.id}) }}" class="btn-link js-participe">
-
                 {% if app.user and event.isParticipationByUser(app.user) %}
                     <i class="fas fa-check-circle"></i>
                 {% else %}
@@ -28,8 +29,8 @@
                 {% else %}
                     <p>Nombre limite de participants atteint :</p>{{ event.participationLikes | length }}/{{ event.participantLimit }}
                 {% endif %}
-
             </a>
+            {% endif %}
 
             <h2>Commentaire :</h2>
             <hr>
@@ -74,6 +75,7 @@
             {% endif %}
         </div>
     </div>
+
 {% endblock %}
 {% block javascripts %}
          {{ encore_entry_script_tags('participation') }}
