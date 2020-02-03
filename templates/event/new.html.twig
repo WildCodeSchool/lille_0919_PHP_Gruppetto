@@ -5,7 +5,7 @@
     {{ encore_entry_link_tags('new_events') }}
 {% endblock %}
 {% block body %}
-
+    {% include 'navbar/_navbar.html.twig' %}
     <div class="new">
         {{ include('event/_form.html.twig') }}
         <button class="return1"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
