@@ -2,9 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
+use App\Entity\Comment;
 use App\Entity\Event;
 use App\Entity\ParticipationLike;
+use App\Entity\ProfilSolo;
+use App\Form\CommentType;
 use App\Form\EventType;
+use App\Repository\CommentRepository;
 use App\Repository\EventRepository;
 use App\Repository\ParticipationLikeRepository;
 use App\Services\GetUserClub;
@@ -15,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use DateTime;
 
 /**
  * @Route("/event")
@@ -66,25 +72,55 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="event_show", methods={"GET"})
+     * @Route("/{id}", name="event_show",  methods={"POST", "GET"}, options={"expose"=true})
      * @param EventRepository $eventRepository
      * @param Event $event
+     * @param Request $request
+     * @param CommentRepository $comments
+     * @param EntityManagerInterface $entityManager
      * @return Response
+     * @throws \Exception
      * @IsGranted("ROLE_USER")
      */
-    public function show(EventRepository $eventRepository, Event $event): Response
-    {
+    public function show(
+        EventRepository $eventRepository,
+        Event $event,
+        Request $request,
+        CommentRepository $comments,
+        EntityManagerInterface $entityManager
+    ) : Response {
+
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        $comments = $this->getDoctrine()->getRepository(Comment::class)
+            ->findBy(['event'=>$event]);
+
+        $creatorSolo = $this->getUser()->getProfilSolo();
         $participants = $this->getParticipants($event);
+
+
+        if ($form->isSubmitted() && $form->isValid() && ($form['content']->getData()) != null) {
+            $comment->setContent($_POST['comment']['content']);
+            $comment->setDateComment(new DateTime('now'));
+            $comment->setEvent($event);
+            $comment->setProfilSolo($creatorSolo);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+        }
 
         return $this->render('event/show.html.twig', [
             'events' => $eventRepository->findAll(),
             'event' => $event,
+            'form' => $form->createView(),
+            'comments' => $comments,
             'participants' => $participants
         ]);
     }
 
     /**
      * @param Event $event
+     * @return array
      */
     public function getParticipants(Event $event)
     {
@@ -154,6 +190,7 @@ class EventController extends AbstractController
      * @param ObjectManager $manager
      * @param ParticipationLikeRepository $participationRepo
      * @return Response
+     * @IsGranted("ROLE_USER")
      */
     public function participation(
         Event $event,
@@ -164,8 +201,8 @@ class EventController extends AbstractController
 
         if (!$user) {
             return $this->json([
-            'code'=>403,
-            'message'=>"Connectez vous"
+                'code'=>403,
+                'message'=>"Connectez vous"
             ], 403);
         }
 
@@ -198,5 +235,10 @@ class EventController extends AbstractController
             'message' => 'Participation acceptée',
             'participationLikes'=> $participationRepo->count(['event'=> $event])
         ], 200);
+
+        if ($this->getUser()->getRoles() === ['ROLE_REGISTERED']) {
+            return $this->render('registration/choiceTypeRegister.html.twig');
+        }
+        return $this->render('event/index.html.twig');
     }
 }
