@@ -128,7 +128,7 @@ class AppFixtures extends Fixture
        
         $manager->persist($user);
 
-        $users[] = $user;
+       /* $users[] = $user;*/
      
         // Creating lambda user2
         $user2 = new User();
