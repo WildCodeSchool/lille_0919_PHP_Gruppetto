@@ -184,8 +184,6 @@ class AppFixtures extends Fixture
             $manager->flush();
         }*/
 
-        */
-
         $messageClub2 = new GeneralChatClub();
         $messageClub2->setProfilClub($profilClub);
         $messageClub2->setDateMessage(new DateTime('now'));
