@@ -2583,7 +2583,6 @@
         {
 
             "name": "symfony/css-selector",
-
             "version": "v4.4.4",
             "source": {
                 "type": "git",

@@ -29,7 +29,7 @@ header {
         }
 
         ul{
-            height: 96%;
+            height: 91%;
             margin-top: 4%;
             background:$light-filter50;
             border-radius: 5px;
@@ -65,6 +65,7 @@ header {
                 img {
                     width: 50px;
                     margin: auto;
+                    border-radius: 10%;
                 }
 
 
@@ -96,14 +97,17 @@ header {
             display: inline-flex;
             overflow: hidden;
             justify-content: space-between;
-            align-items: center;
             background-color: $primary-color85;
             width: 70%;
+            height: 53px;
             box-sizing: border-box;
 
             img {
-                width: 55px;
+                width: 45px;
                 margin-left: 10px;
+                border-radius: 20%;
+                margin-top: 2px;
+
             }
 
             /* Display arrow*/
