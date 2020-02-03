@@ -7,6 +7,8 @@ header {
     position: fixed;
     top: 0;
     transition: top .5s;
+    z-index: 2;
+
 
     /* main menu include icons*/
     .main-menu {
@@ -167,6 +169,3 @@ header.closed{
     }
 
 }
-
-
-

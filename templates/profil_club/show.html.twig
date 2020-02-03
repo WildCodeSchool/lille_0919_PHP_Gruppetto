@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon club{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('profil') }}
+{% endblock %}
+{% block body %}
+    {% include 'navbar/_navbar.html.twig' %}
+<main>
+    {{ form_start(form) }}
+    <div id="box-global">
+        <section class="box-contain-info">
+            <div class="btn-modify">
+                <img class="img-pen" src="{{ asset("build/images/btn-modif.svg")}}" alt="picture pen">
+            </div>
+            <img src="/uploads/clubLogo/{{ profil_club.logoClub }}"  alt="{{ profil_club.nameClub }}">
+            {{ form_widget(form.nameClub,{'attr':{'class':'box-form-update'}}) }}
+
+            <article class="box-text">
+                <h3>Nom</h3>
+                <p>{{ profil_club.nameClub }}</p>
+            </article>
+        </section>
+
+        <section class="box-contain-info">
+            <div class="btn-modify">
+                <img class="img-pen" src="{{ asset("build/images/btn-modif.svg")}}" alt="picture pen">
+            </div>
+            <img src="{{ asset("build/images/icon-profil-city.svg")}}"  alt="{{ profil_club.nameClub }}">
+
+            {{ form_widget(form.cityClub,{'attr':{'class':'box-form-update'}}) }}
+
+            <article  class="box-text">
+                <h3>Ville</h3>
+                <p>{{ profil_club.cityClub }}</p>
+            </article>
+        </section>
+
+        <section class="box-contain-info">
+            <div class="btn-modify">
+                <img class="img-pen" src="{{ asset("build/images/btn-modif.svg")}}" alt="picture pen">
+            </div>
+            <img src="{{ asset("build/images/icon-profil-biography.png")}}"  alt="{{ profil_club.nameClub }}">
+            {{ form_widget(form.descriptionClub,{'attr':{'class':'box-form-update'}}) }}
+
+            <article class="box-text">
+                <h3>Description</h3>
+                <p>{{ profil_club.descriptionClub }}</p>
+            </article>
+        </section >
+
+        <section class="box-contain-info">
+            <div class="btn-modify">
+            <img class="img-pen" src="{{ asset("build/images/btn-modif.svg")}}" alt="picture pen">
+            </div>
+            <img src="{{ asset("build/images/icon-profil-security.svg")}}"  alt="{{ profil_club.nameClub }}">
+            <article class="box-text">
+                <h3>Sécurité</h3>
+                <p><a href="{{ path('modify_password') }}"> Changer mon mot de passe</a></p>
+            </article>
+        </section>
+
+        <section id="logo-form">
+            <h3>Logo</h3>
+            <h3>{{form_widget(form.logoClub,{'attr':{'class':'custom-file-input'}}) }}</h3>
+        </section>
+    {{ form_end(form) }}
+        <section>
+
+        <button class="btn-save">
+            <img src="{{ asset("build/images/save.svg")}}"{{ button_label|default('Save') }}>
+        </button>
+
+        </section>
+    </div>
+</main>
+
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('profil') }}
+{% endblock %}
