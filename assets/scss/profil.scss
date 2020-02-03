@@ -35,7 +35,7 @@ body {
             border-radius: 50px;
             position: relative;
             left: 91%;
-            bottom: 3%;
+            bottom: 10%;
             display: flex;
             justify-content: center;
             z-index: 1;
@@ -57,6 +57,7 @@ body {
 
             img{
                 width: 40px;
+                border-radius: 10%;
             }
 
             .box-form-update {
