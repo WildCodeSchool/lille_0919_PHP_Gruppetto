@@ -1,0 +1,261 @@
+@import "global";
+@import "nav";
+
+form{
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    margin: 0.3em 0;
+
+    .input-message-bar{
+        width: 90%;
+        background-color: $light;
+        border-radius: 15px;
+        display: flex;
+        justify-content: space-evenly;
+
+        input{
+            color: $tertiary-color;
+            width: 80%;
+            border: 0;
+        }
+
+        button{
+            border: 0;
+        }
+
+        div{
+            height: 100%;
+
+            #general_chat_contentMessage{
+                height: 100%;
+            }
+        }
+    }
+
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    #general-chat-button{
+        background-color: $primary-color95;
+        border: 3px solid $primary-border-color;
+        border-radius: 5px;
+        width: 90%;
+        margin: 2.5em auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        img{
+            height: 70%;
+        }
+
+        p{
+            color: $light;
+            font-size: 21px;
+            font-family: 'Edmondsans', sans-serif;
+            letter-spacing: 15px;
+        }
+    }
+
+    .green-box{
+
+        //style for message list club
+        ul{
+            height: 95%;
+            padding: 0.3em;
+            overflow: auto;
+
+            li{
+                height: 15%;
+
+                table{
+                    margin: 0 auto;
+                    width: 100%;
+
+                    tr{
+
+                        #user-avatar-cell, #message-icon-cell{
+                            text-align: center;
+                            width: 60px;
+
+                            img{
+                                vertical-align: bottom;
+                            }
+
+                            .avatar{
+                                max-width: 50px;
+                                border-radius: 50%;
+                            }
+                        }
+
+                        .user-name{
+                            color: $secondary-color;
+                            font-family: 'Roboto', sans-serif;
+                            font-size: 21px;
+                            font-weight: bold;
+                            width: 80%;
+                        }
+
+                        .user-last-message{
+                            color: $light;
+                            font-family: 'Roboto', sans-serif;
+                            font-size: 19px;
+                            width: 80%;
+
+                            p{
+                                max-width: 245px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+
+                            @media all and (min-width: 380px){
+                                p{
+                                    min-width: 100%;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                }
+                            }
+                        }
+
+                        .avatar{
+                            vertical-align: middle;
+                            margin: 0 auto;
+                        }
+                    }
+                }
+
+            }
+
+            hr{
+                color: $light;
+                width: 80%;
+                margin: 0.5rem auto;
+            }
+        }
+    }
+    // end style message list club
+
+    //style message general club
+    .general-chat-section{
+        display: flex;
+        flex-direction: column;
+        height: 74vh;
+
+        h1{
+            display: flex;
+            justify-content: space-evenly;
+            width: 80%;
+            margin: 0.5em auto;
+            font-family: 'Edmondsans', sans-serif;
+            color: $secondary-color;
+            font-size: 21px;
+        }
+
+        ul{
+            height: 90%;
+
+            li{
+                height: auto;
+            }
+
+            li.general-chat-message{
+                margin: 0.3em 0;
+                height: auto;
+                font-size: 15px;
+                font-family: 'Roboto', sans-serif;
+                color: $light;
+
+                p{
+                    max-width: 80vw;
+                    overflow: no-content;
+                }
+
+                .sentAt{
+                    font-size: 12px;
+                }
+
+                .sentBy{
+                    color: $secondary-color;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .user-card{
+            z-index: 4;
+            display: none;
+            background-color: $primary-color95;
+            height: 30vh;
+            width: 70vw;
+            border: 3px solid $primary-border-color;
+            border-radius: 5px;
+            position: fixed;
+            top: 30vh;
+            left: 15vw;
+            align-items: center;
+            justify-content: space-around;
+
+            img{
+                height: 50px;
+                width: 20%;
+                border-radius: 50%;
+            }
+
+            #text-info{
+                width: 70%;
+                height: 90%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+
+                #user-name{
+                    font-family: 'Edmondsans', sans-serif;
+                    font-size: 25px;
+                    color: $light;
+                }
+
+                #user-description{
+                    font-family: 'Roboto', sans-serif;
+                    color: $light;
+                }
+
+                .close {
+                    position: absolute;
+                    right: 32px;
+                    top: 32px;
+                    width: 32px;
+                    height: 32px;
+                }
+
+                .close:hover {
+                    opacity: 1;
+                }
+
+                .close:before, .close:after {
+                    position: absolute;
+                    left: 15px;
+                    content: ' ';
+                    height: 33px;
+                    width: 2px;
+                    background-color: $secondary-color;
+                    border: none;}
+
+                .close:before {
+                    transform: rotate(45deg);
+                }
+
+                .close:after {
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+    }
+}

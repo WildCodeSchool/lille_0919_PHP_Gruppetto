@@ -1,0 +1,111 @@
+@import "vars";
+@import "app";
+
+* {
+    overflow: visible;
+}
+
+// Start Details CSS
+body {
+    max-height: 0;
+}
+
+.information {
+    margin: 60px auto;
+    color: $tertiary-color;
+    background-color: $secondary-color;
+    border-radius: 5px;
+    border: $secondary-border-color solid 3px;
+    text-align: center;
+    width: 150px;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .accordion {
+        text-align: center;
+        background-color: $primary-color;
+        color: $light;
+        cursor: pointer;
+        padding: 10px;
+        width: 90%;
+        border-radius: 7px;
+        border: $primary-border-color solid 2px;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+        margin: 5px 0;
+    }
+
+    .active, .accordion:hover {
+        background-color: $primary-color;
+    }
+
+    .panel {
+        padding: 0 18px;
+        width: 80%;
+        margin: auto;
+        background-color: $light-filter75;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        .phMailer {
+            margin-bottom: 7px;
+            margin-top: 10px;
+            width: 300px;
+        }
+
+        .phMessage {
+            margin-bottom: 7px;
+            margin-top: 10px;
+            height: 100px;
+            width: 300px;
+        }
+
+        .send {
+            width: 100px;
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+    }
+
+    .backDetail {
+        margin-top: 100px;
+        margin-bottom: 20px;
+        height: 55px;
+        width: 55px;
+        background-color: $secondary-color;
+        border-radius: 50%;
+        align-items: center;
+        display: flex;
+        align-content: space-between;
+        border: none;
+        outline: none;
+
+        .return {
+            padding: 0 0 0 16px ;
+        }
+
+    }
+}
+
+@media screen and (min-width: 992px) {
+    body {
+        display: block;
+    }
+
+}

@@ -35,6 +35,9 @@
     "doctrine/common": {
         "version": "v2.10.0"
     },
+    "doctrine/data-fixtures": {
+        "version": "1.4.0"
+    },
     "doctrine/dbal": {
         "version": "v2.9.2"
     },
@@ -55,6 +58,18 @@
     },
     "doctrine/doctrine-cache-bundle": {
         "version": "1.3.5"
+    },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "fc52d86631a6dfd9fdf3381d0b7e3df2069e51b3"
+        },
+        "files": [
+            "src/DataFixtures/AppFixtures.php"
+        ]
     },
     "doctrine/doctrine-migrations-bundle": {
         "version": "1.2",
@@ -111,6 +126,18 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "friendsofsymfony/jsrouting-bundle": {
+        "version": "2.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.3",
+            "ref": "a9f2e49180f75cdc71ae279a929c4b2e0638de84"
+        }
+    },
+    "fzaninotto/faker": {
+        "version": "v1.9.1"
+    },
     "gitonomy/gitlib": {
         "version": "v1.0.4"
     },
@@ -158,6 +185,9 @@
     },
     "pdepend/pdepend": {
         "version": "2.5.2"
+    },
+    "php": {
+        "version": "7.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -347,6 +377,15 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/google-mailer": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "f8fd4ddb9b477510f8f4bce2b9c054ab428c0120"
+        }
+    },
     "symfony/http-foundation": {
         "version": "v4.2.8"
     },
@@ -488,6 +527,15 @@
     "symfony/security-http": {
         "version": "v4.2.8"
     },
+    "symfony/sendgrid-mailer": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "b46e4f8f1adb2864f0aa9c0ff57aea3324a07199"
+        }
+    },
     "symfony/serializer": {
         "version": "v4.2.8"
     },
@@ -535,6 +583,9 @@
             "config/routes/dev/twig.yaml",
             "templates/base.html.twig"
         ]
+    },
+    "symfony/twig-pack": {
+        "version": "v1.0.0"
     },
     "symfony/validator": {
         "version": "4.1",
@@ -602,11 +653,37 @@
     "symfony/yaml": {
         "version": "v4.2.8"
     },
+
+    "tattali/calendar-bundle": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.1",
+            "ref": "0c643e17b5340747b35c2c75e11727fa31bfa9bb"
+        },
+        "files": [
+            "config/routes/calendar.yaml"
+        ]
+    },
+
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.2"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.0.1"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.0.0"
+    },
     "twig/twig": {
         "version": "v2.9.0"
     },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "willdurand/jsonp-callback-validator": {
+        "version": "v1.1.0"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"

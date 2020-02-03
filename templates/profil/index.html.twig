@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choix du profil{% endblock title %}
+
+{% block body %}
+
+    {% block blackFiltered %}
+        <div id="black-filter"></div>
+        {% block mainLogo %}
+            {% include 'registration/_mainLogo.html.twig' %}
+        {% endblock mainLogo %}
+        {% block registrationForm %}
+            {% include 'registration/_registrationChoiceProfilForm.html.twig' %}
+        {% endblock registrationForm %}
+
+    {% endblock blackFiltered %}
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{{ form_start(registrationForm, { 'attr': { 'class': 'registration-form' }}) }}
+
+{# displays the images showing the registration progress #}
+<div class="step-check">
+    <img src="{{ asset('build/images/step-checked.svg') }}" id="first-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-check.svg') }}" id="second-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-check.svg') }}" id="third-check" alt="">
+    <img src="{{ asset('build/images/separator-step-check.svg') }}" alt="">
+    <img src="{{ asset('build/images/step-check.svg') }}" id="fourth-check" alt="">
+</div>
+
+<div class="errors-block">
+    {{ form_errors(registrationForm.email) }}
+    {{ form_widget(registrationForm.email) }}
+</div>
+
+
+    {{ form_errors(registrationForm.plainPassword.first) }}
+    {{ form_widget(registrationForm.plainPassword.first) }}
+
+    {{ form_errors(registrationForm.plainPassword.second) }}
+    {{ form_widget(registrationForm.plainPassword.second) }}
+<button class="continue-btn">Créer mon compte</button>
+
+<div class="cgu-block">
+    {{ form_label(registrationForm.agreeTerms) }}
+    {{ form_errors(registrationForm.agreeTerms) }}
+    {{ form_widget(registrationForm.agreeTerms) }}
+</div>
+
+{{ form_end(registrationForm) }}
+
+
+
+

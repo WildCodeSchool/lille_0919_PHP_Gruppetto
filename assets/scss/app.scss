@@ -1,9 +1,199 @@
 @import "vars";
+@import "form";
+@import "global";
 
-body {
-    background-color: $secondary-color;
+//reset
+* {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+
 }
 
-a {
-    color: $warm-color;
+body {
+
+    .container {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        #auth-buttons {
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .auth-button {
+                background: $primary-color90;
+                border: 2px solid $primary-border-color;
+                width: 315px;
+                height: 78px;
+                color: $light;
+                text-align: center;
+                font-size: 48px;
+                margin: 0.5em 0;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .container-more {
+
+        height: 500px;
+        text-align: right;
+
+
+        .more {
+            padding: 10px;
+            font-size: 15px;
+            color: $secondary-color;
+            text-decoration: none;
+        }
+
+        .more:active {
+            color: $secondary-border-color;
+            text-decoration: none;
+        }
+
+    }
+
+
+    .logo-block {
+        z-index: 2;
+        height: 40%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        #logo-banner {
+            width: 275px;
+            background: $light-filter75;
+            border-radius: 23px;
+            margin: 0 auto;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    //section containing the forms
+    #register-form{
+        height: 50vh;
+        z-index: 2;
+        //form choose between 'sportif' and 'club'
+
+        #choice-entity{
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            height: 100%;
+
+            .entity{
+                background: $primary-color90;
+                border: 5px solid $primary-border-color;
+                border-radius: 15px;
+                text-align: center;
+                font-size: 36px;
+                width: 60%;
+                height: 125px;
+                color: $light;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                &:hover{
+                    cursor: pointer;
+                }
+
+                &:focus{
+                    color: $secondary-color90 ;
+                }
+            }
+        }
+    }
+
+    .info-banner{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    body {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 25% 25% 50%;
+        grid-template-areas: 'logoBlock form' 'buttons form' 'infobar infobar';
+
+        .logo-block {
+            grid-area: logoBlock;
+            height: 100%;
+
+            #logo-banner {
+                margin: 0;
+                width: 400px;
+                height: 95%;
+            }
+        }
+
+        .container {
+            grid-area: buttons;
+            height: 100%;
+
+            #auth-buttons {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+
+                .auth-button {
+                    margin: 0;
+                    height: 65px;
+                }
+            }
+        }
+
+        .info-banner {
+            grid-area: infobar;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80%;
+            background-color: $secondary-color70;
+            padding: 0 2em;
+
+            p {
+                display: flex;
+                flex-direction: column;
+                color: $tertiary-color;
+                font-size: 36px;
+                text-align: center;
+                width: calc(100% / 4);
+            }
+
+            hr {
+                height: 70%;
+                width: -1px;
+                color: $tertiary-color;
+            }
+        }
+
+        .backFaq {
+            margin: 100px auto;
+            height: 60px;
+            width: 60px;
+            background-color: $secondary-color;
+            border-radius: 50%;
+            display: inline-block;
+            border: none;
+            outline: none;
+        }
+
+    }
+
 }

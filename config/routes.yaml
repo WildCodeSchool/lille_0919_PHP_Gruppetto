@@ -1,3 +1,9 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+#club_chat_get_messages :
+#  path: /club/chat/getMessages
+#  methods: GET
+#  options:
+#    expose: true

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking | Événements {% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('new_events') }}
+{% endblock %}
+{% block body %}
+    {% include 'navbar/_navbar.html.twig' %}
+    <div class="index_event">
+
+        {% for event in events %}
+            <button class="card_button"><a href="{{ path('event_show', {'id': event.id}) }}">
+           <div class="card_events">
+                <p class="date_time">{{ event.dateEvent ? event.dateEvent|date('d-m-Y') : '' }} | {{ event.timeEvent ? event.timeEvent|date('H:i') : '' }}</p>
+                <p class="n_event">{{ event.nameEvent }}</p>
+                <p class="level_ni">Niveau : {{ event.levelEvent }}</p>
+           </div>
+                </a>
+            </button>
+        {% else %}
+            <h1>Aucun événement trouvé. Créez votre premier événement.</h1>
+
+        {% endfor %}
+    {% if is_granted('ROLE_CLUBER') %}
+    <button class="add"><a href="{{ path('event_new') }}"><img src="{{ asset("build/images/add.svg")}}" alt="edit" class="icons"></a></button>
+    {% endif %}
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('new_events') }}
+{% endblock %}

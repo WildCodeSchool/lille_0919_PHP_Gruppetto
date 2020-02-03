@@ -1,0 +1,288 @@
+@import "vars";
+@import "form";
+@import "global";
+@import "nav";
+
+body{
+    color: $light;
+    margin-top: 70px;
+
+    //index scroll
+    .index_event{
+        overflow-x: scroll;
+    }
+
+    //date & time page index
+    .date_time{
+        color: $secondary-color;
+        text-align: center;
+        font-size: 19px;
+        margin: 0 5% 2% 5%;
+        }
+
+    //name of events
+    .n_event{
+        text-align: center;
+        font-size: 15px;
+        margin: 0 5% 2% 5%;
+        }
+
+    .level_ni{
+        text-align: end;
+        margin-right: 4%;
+    }
+
+    //cards of event in index page
+    .card_events{
+        background: $primary-color95;
+        border:  3px solid $primary-border-color;
+        border-radius: 5px;
+        }
+
+    //button add
+    .add{
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 530px;
+        left: 170px;
+        bottom: 0;
+        color: transparent;
+        }
+
+    //line blue
+    hr{
+        width: 90%;
+        height: 2px;
+        background-color: $tertiary-color50;
+        border: none;
+        margin-top: auto;
+        }
+
+    //box green of page show
+    .show_events {
+        background: $primary-color95;
+        border:  3px solid $primary-border-color;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin: 5% 5% 20% 5%;
+        height: 80%;
+        }
+
+    h1{
+        color: $secondary-color;
+        margin-bottom: 0;
+        font-size: 20px;
+        margin-left: 5%;
+        margin-top: 5%;
+        }
+
+    //date & time pag show
+    .date_time_show{
+        margin: 5% 5% 2% 5%;
+        font-size: 12px;
+        }
+
+    //box blue of description show page
+    .descript{
+        background: $primary-color70;
+        border: 1px solid $secondary-border-color;
+        color: $light;
+        border-radius: 5%;
+        width: 250px;
+        height: 100px;
+        margin: 5% 5% 0 11%;
+        text-align: center;
+
+    }
+
+    p{
+        overflow: hidden;
+    };
+
+    //participation section
+    img{
+        width: 50px;
+        border-radius: 50%;
+        margin-left: 15px ;
+        }
+
+    figure{
+        font-size: 20px;
+        }
+
+    .link{
+        background-color: transparent;
+        border-color: transparent;
+        text-decoration: none;
+        color: $light;
+        }
+
+    //level page show
+    .levl_n{
+        margin: 5% 5% 5% 15%;
+        }
+
+    h2{
+        color: $light;
+        margin-bottom: 0;
+        font-size: 20px;
+        margin-left: 5%;
+        margin-top: 5%;
+        }
+
+    //button of delete
+    .delete{
+        background-image: url('/build/images/delete.36f9db95.svg');
+        background-size: 30px;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 600px;
+        left: 300px;
+        }
+
+    //button  of return
+    .return{
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 600px;
+        left: 35px;
+        }
+
+    .return_show{
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 580px;
+        left: 150px;
+    }
+
+    .limit{
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .nb_participant{
+        text-align: center;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    .return1{
+        box-sizing: border-box;
+        background-color: $secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 580px;
+        left: 80px;
+    }
+
+    //button of edit
+    .edit{
+        box-sizing: border-box;
+        background-color:$secondary-color;
+        border-color: transparent ;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 600px;
+        left: 170px;
+        }
+
+    //icon of edit and return
+    .icons{
+        width: 30px;
+        margin: auto;
+        }
+
+    .btn-link{
+        color: $light;
+        text-decoration: none;
+        line-height: 16px;
+        margin-left: 38%;
+    }
+
+    //comments
+    .content_comment {
+        text-align: center;
+    }
+
+    .name_comment{
+        margin-bottom: 3px;
+        color: black;
+    }
+
+    textarea, .content_comment{
+        margin-left: 35px;
+        width: 250px;
+        height: 20px;
+    }
+
+    .add_comment {
+        border-radius: 100%;
+        background-color: transparent;
+        border-color: transparent;
+
+        .icons{
+            width: 15px;
+        }
+    }
+
+    .comment{
+        background: $tertiary-color50;
+        border: 1px solid $tertiary-color50;
+        color: $light;
+        border-radius: 5%;
+        width: 250px;
+        height: 40px;
+        margin: 5% 5% 5% 11%;
+        font-size: 10px;
+    }
+
+    .scroll_comment{
+        overflow-y: scroll;
+        height: 90px;
+
+    }
+
+    // card page events
+    .card_button{
+        background-color: transparent;
+        border-color: transparent;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin: 10% 5% 0 5%;
+        height: 11%;
+        width: 90%;
+
+        a{
+            color: $light;
+            text-decoration: none;
+            }
+
+        }
+}

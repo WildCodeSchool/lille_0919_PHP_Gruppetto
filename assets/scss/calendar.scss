@@ -1,0 +1,27 @@
+@import "global";
+
+body {
+    margin: 0;
+    padding: 0;
+
+    #calendar-holder {
+        background: rgba(74, 176, 121, 0.8);
+        margin: 20% 5% 5% 5%;
+        border: 5px solid #1E6740;
+        height: 70%;
+}
+
+    h2{
+        color: $light;
+        text-align: center;
+}
+
+    .fc-day-header {
+        color: $secondary-color;
+        margin: 50% 50% 50% 50%;
+        padding: 5px;
+}
+
+
+}
+

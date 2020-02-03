@@ -1,0 +1,38 @@
+{% block stylesheets %}
+    {{ encore_entry_link_tags('nav') }}
+{% endblock %}
+{% block body %}
+    <header class="closed">
+        <div class="main-menu">
+            {% if app.user %}
+                <div id="logout-button">
+                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+                {# TODO Add links for FAQ, CGU, Mentions légales #}
+            {% endif %}
+            <ul>
+                <li><a href="#"><img src="{{ asset("build/images/icons-calendar.svg")}}"  alt="Calendar">Agenda</a></li>
+                <li><a href="#"><img src="/uploads/clubLogo/{{ profil_club.logoClub }}"  alt="{{ profil_club.nameClub }}">Club</a></li>
+                <li><a href="{{ path('event') }}"><img src="{{ asset("build/images/icons-add.png")}}" alt="event calendar">Evénements</a></li>
+                <li><a href="{{ path('club_chat') }}"><img src="{{ asset("build/images/icons-mail.png")}}" alt="mail">Chat</a></li>
+                <li><a href="{{ path('profil_club_edit') }}"><img src="{{asset("build/images/icons-user.png")}}" alt="user profil">Profil</a></li>
+            </ul>
+            <div id="more-button">
+                <a href="{{ path('information') }}"><span>...</span><br>Plus</a>
+            </div>
+        </div>
+        <section class="navigation-bar-bottom">
+            <div class="green-bottom-nav">
+                <div class="img-size">
+                <img src="/uploads/clubLogo/{{ profil_club.logoClub }}"  alt="{{ profil_club.nameClub }}">
+                </div>
+                <img id="arrow-swipe" src="{{ asset("build/images/arrow-up.svg")}}" alt="arrow">
+                {# Nav bar effect#}
+            </div>
+            <div class="yellow-bottom-nav"></div>
+        </section>
+    </header>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('nav') }}
+    {% endblock %}
+{% endblock %}

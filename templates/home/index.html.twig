@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gruppetto{% endblock %}
+
+{% block body %}
+    <section class="container">
+        <section id="auth-buttons">
+            <button onclick='location.href="{{path('app_register')}}"'  class="auth-button">Inscription</button>
+            <button onclick='location.href="{{path('app_login')}}"' class="auth-button">Connexion</button>
+        </section>
+
+    </section>
+    <section class="container-more">
+    {% include 'registration/_mainLogo.html.twig' %}
+        <a class="more"  href="{{ path('information') }}">Plus...</a>
+    </section>
+
+    <section class="info-banner">
+<p><img src="{{ asset('build/images/icons8-running-1.svg') }}" alt="run logo">Crée tes propres événements</p>
+        <hr>
+<p><img src="{{ asset('build/images/icons8-running-1.svg') }}" alt="run logo">Gère ton club</p>
+        <hr>
+<p><img src="{{ asset('build/images/icons8-running-1.svg') }}" alt="run logo">Crée tes propres événements</p>
+    </section>
+{% endblock %}

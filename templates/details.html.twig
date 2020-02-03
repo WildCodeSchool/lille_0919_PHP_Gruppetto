@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+ {% block stylesheets %}
+     {{ encore_entry_link_tags('details') }}
+ {% endblock %}
+
+{% block body %}
+    <h1 class="information">Information</h1>
+    <section class="details">
+        <button class="accordion">Qui sommes-nous ?</button>
+        <section class="panel">
+            <br>
+            <strong>Première utilisation, comment dois-je m’y prendre ?</strong> <br>
+            Lors de ta première connexion, il te suffit simplement de créer un compte avec un email et un mot de passe. Une fois créé, il ne te reste plus qu’à naviguer dans l’application, découvrir les sportifs autour de toi, adhérer à ton club ou encore proposer toi même une séance de sport !
+            <br><br>
+            <strong>Comment savoir si les personnes que je rejoins pour une séance sont fiables ?</strong> <br>
+            Il te sera possible de discuter via la fonction Tchat avec les personnes que tu rencontres sur l’application. Nous t’invitons à engager la conversation afin de te renseigner sur le sportif qui partagera la séance avec toi. Tu peux aussi inciter tes amis à créer leur compte Gruppetto afin d’être plusieurs lors des premières séances si cela te rassure.
+            <br><br>
+            <strong>C’est possible d’inviter seulement des filles à mon entraînement ?</strong> <br>
+            Oui c’est tout à fait possible. Lors de la création de l’activité, pense à cocher la case “activité réservée aux femmes seulement”
+            <br><br>
+            <strong>Est ce que je peux discuter avant avec les personnes que je vais rejoindre pour un entraînement ?</strong> <br>
+            Oui absolument. La fonctionnalité Messages te permet de discuter avec les autres sportifs, soit dans une conversation individuelle, soit en groupe.
+            <br><br>
+            <strong>Y a t’il un suivi de l’activité en direct pour les proches ? (géolocalisation pour être en sécurité?)</strong> <br>
+            Non, malheureusement pour le moment cette fonctionnalité n’est pas disponible.
+            <br><br>
+            <strong>Est ce que Gruppetto me permet d’avoir les analyses de ma course ? (vitesse moyenne, calories…)</strong> <br>
+            Non, i n’y pas de suivi d’activité. L’idée de Gruppetto est de regrouper des sportifs pour vivre leur passion ensemble. S’ils souhaitent visualiser leur parcours, vitesse, calories, nous les invitons à télécharger de superbes applications qui en font leur coeur de service ;)
+            <br><br>
+            <strong>Est ce que je peux utiliser cette appli à l’étranger ?</strong> <br>
+            Oui tout à fait ! Nous travaillons actuellement sur des versions européennes. N’hésite pas à nous aider à promouvoir Gruppetto en France et ailleurs !
+        </section>
+        <button class="accordion">Conditions générales d'utilisation</button>
+        <section class="panel">
+            <br>
+            <strong>1.1 Le Site est réservé aux personnes majeures ayant la qualité de particulier ainsi qu’aux mineurs titulaires d’une autorisation parentale.</strong>
+            <br>
+            En tout état de cause, Decathlon.fr encourage toute personne ayant la responsabilité d’un mineur à contrôler l’utilisation du Site par ce dernier.
+            <br><br>
+            <strong>1.2 L’accès à certains services proposés par le Site peut être subordonné à la création d’un Compte nécessitant la communication, par l’Utilisateur,</strong>
+            <br>
+            d’informations permettant son identification. Au regard des dispositions de la Loi pour la confiance dans l’économie numérique (LCEN)
+            du 6 août 2004 modifiée, Decathlon.fr dispose d’une obligation légale de collecte et de conservation de ces données d’identification.
+            L’Utilisateur s’engage à transmettre des données exactes et complètes sur son identité et s’interdit d'usurper
+            l'identité d'un tiers quelconque. Dans le cas contraire, le Site se réserve le droit ne pas confirmer, suspendre ou supprimer le compte.
+        </section>
+        <button class="accordion">Mentions légales</button>
+        <section class="panel">
+            <br>
+            mineur / légal / accès / fonctionnalités
+            <br><br>
+            <strong>Identité</strong>
+            <br>
+            L’application Gruppetto est éditée par XXX, dont le siège social est situé XXX et immatriculée au Registre du Commerce et des Sociétés de XXXXX.
+            <br>
+            N° TVA Intracommunautaire :
+            <br>
+            Directeur de publication :
+            <br><br>
+            <strong>Contact</strong>
+            <br>
+            Le service client est joignable par :
+            internet via le lien XXXX
+            voie postale
+            Éditeur de plateforme : XXX
+            Hébergeur de plateforme : OVH
+        </section>
+        <button class="accordion">Nous contacter</button>
+        <form method="post" class="panel contact">
+            <br>
+           <div class="phName">{{ form_start(email_form) }}</div>
+            <div>{{ form_widget(email_form) }}</div>
+            <input class="send" type="submit" value="Envoyer"/>
+            <br>
+            <div>{{ form_end(email_form) }}</div>
+        </form>
+        <a class="backDetail" href="{{path('event')}}">
+            <img class="return" src="{{asset("build/images/back-arrow-icon-blue.ed1a350b.svg")}}" alt="return">
+        </a>
+    </section>
+{% endblock body %}
+ {% block javascripts %}
+     {{ encore_entry_script_tags('details') }}
+ {% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking | {{event.nameEvent}} {% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('new_events') }}
+{% endblock %}
+{% block body %}
+    {% include 'navbar/_navbar.html.twig' %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <div class="show_events">
+        <h1>{{ event.nameEvent }}</h1>
+        <hr>
+        <p class="date_time_show">{{ event.dateEvent ? event.dateEvent|date('d-m-Y') : '' }} | {{ event.timeEvent ? event.timeEvent|date('H:i') : '' }} | {{ event.placeEvent }}</p>
+        <p class="date_time_show">Entraîneur : JOhn JOe</p>
+        <p class="levl_n">Niveau : {{ event.levelEvent }}</p>
+        <p class="descript">{{ event.description }}</p>
+
+        <div class="participation">
+
+            {% if is_granted('ROLE_CLUBER') %}
+                <p class="nb_participant">N° de particpant : {{ event.participationLikes | length }}/{{ event.participantLimit }} </p>
+            {% else %}
+            <a href="{{ path('event_participe', {'id' : event.id}) }}" class="btn-link js-participe">
+                {% if app.user and event.isParticipationByUser(app.user) %}
+                    <i class="fas fa-check-circle"></i>
+                {% else %}
+                    <i class="far fa-check-circle"></i>
+                {% endif %}
+                {% if event.participantLimit >  event.participationLikes | length  %}
+                <span class="js-participationLikes">{{ event.participationLikes | length }}</span> / {{ event.participantLimit }}
+                {% else %}
+                    <p class="limit">Limite atteinte : {{ event.participationLikes | length }}/{{ event.participantLimit }}</p>
+                {% endif %}
+            </a>
+            {% endif %}
+            <div id="participants">
+                {% for participant in participants %}
+                    <img src="{{ participant.avatar }}" alt="{{ participant.firstname }} {{ participant.lastname }}">
+                {% endfor %}
+            </div>
+
+            <h2>Commentaire :</h2>
+            <hr>
+            <div class="scroll_comment">
+                    {% for comment in comments %}
+
+                    <div class="comment">
+                        <ul>
+                            <li>
+                            <p class="name_comment">  {{ comment.profilSolo.lastName}}  {{ comment.profilSolo.firstName}} <br></p>
+                            <p class="content_comment"> {{ comment.content }}</p>
+                       </li>
+                        </ul>
+
+                    </div>
+
+                    {% endfor %}
+            </div>
+            <div class="add_comment">
+
+                {{ form_start(form) }}
+                {{ form_widget(form.content) }}
+                 <button class="add_comment">{{ button_label|default('')}}<img src="{{ asset("build/images/send-message-icon.svg")}}" alt="send" class="icons"> </button>
+
+                <div class="alert alert-danger">{{ form_rest(form) }}</div>
+                {{ form_end(form) }}
+            </div>
+
+
+            {% if is_granted('ROLE_CLUBER') %}
+            <button class="return"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
+            {{ include('event/_delete_form.html.twig') }}
+            <button class="edit"><a href="{{ path('event_edit', {'id': event.id}) }}"><img src="{{ asset("build/images/btn-modif.svg")}}" alt="edit" class="icons"></a></button>
+            {% else %}
+                <button class="return_show"><a href="{{ path('event') }}"><img src="{{ asset("build/images/return.svg")}}" alt="retour" class="icons"></a></button>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+         {{ encore_entry_script_tags('participation') }}
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{% endblock %}

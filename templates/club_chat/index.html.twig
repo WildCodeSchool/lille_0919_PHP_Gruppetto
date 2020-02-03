@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gruppetto | Messages{% endblock %}
+   {% block stylesheets %}
+       {{ encore_entry_link_tags('messages') }}
+   {% endblock %}
+{% block body %}
+{% include 'navbar/_navbar.html.twig' %}
+    <section class="container">
+        <div class="searchBar">
+            <input type="text" class="searchType" id="js-search-input">
+            <div class="js-search-icon">
+                <img src="{{ asset('build/images/icons8-search-blue.svg') }}" alt="search icon">
+            </div>
+        </div>
+        <div id="js-search-results" class="search-results hide"></div>
+
+            {% block greenBox %}
+        <section class="green-box">
+            <ul>
+                <li onclick="window.location.href='{{ path('club_chat_general') }}'">
+                    <table>
+                        <tr>
+                            <td rowspan="2" id="user-avatar-cell"><img class="avatar" src="{{ asset('build/images/logo_club.png') }}" alt=""></td>
+                            <td class="user-name">Tchat général du club</td>
+                            <td rowspan="2" id="message-icon-cell"><img src="{{ asset('build/images/message-icon.svg') }}" alt=""></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td rowspan="2" id="user-avatar-cell"><img class="avatar" src="https://randomuser.me/api/portraits/women/80.jpg" alt=""></td>
+                            <td class="user-name">Vivan Lee</td>
+                            <td rowspan="2" id="message-icon-cell"><img src="{{ asset('build/images/message-icon.svg') }}" alt=""></td>
+                        </tr>
+                        <tr>
+                            {# add a twig filter to display only x characters #}
+                            <td class="user-last-message"><p>Bonne idée !</p></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td rowspan="2" id="user-avatar-cell"><img class="avatar" src="https://randomuser.me/api/portraits/men/95.jpg" alt=""></td>
+                            <td class="user-name">Carl Cunningham</td>
+                            <td rowspan="2" id="message-icon-cell"><img src="{{ asset('build/images/message-icon.svg') }}" alt=""></td>
+                        </tr>
+                        <tr>
+                            {# add a twig filter to display only x characters #}
+                            <td class="user-last-message"><p>On se rejoint là-bas alors !</p></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td rowspan="2" id="user-avatar-cell"><img class="avatar" src="https://randomuser.me/api/portraits/men/89.jpg" alt=""></td>
+                            <td class="user-name">Guy Price</td>
+                            <td rowspan="2" id="message-icon-cell"><img src="{{ asset('build/images/message-icon.svg') }}" alt=""></td>
+                        </tr>
+                        <tr>
+                            {# add a twig filter to display only x characters #}
+                            <td class="user-last-message"><p>ça va bien et toi ?</p></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td rowspan="2" id="user-avatar-cell"><img class="avatar" src="https://randomuser.me/api/portraits/women/29.jpg" alt=""></td>
+                            <td class="user-name">Jean Craig</td>
+                            <td rowspan="2" id="message-icon-cell"><img src="{{ asset('build/images/message-icon.svg') }}" alt=""></td>
+                        </tr>
+                        <tr>
+                            {# add a twig filter to display only x characters #}
+                            <td class="user-last-message"><p>Oui, je pense que c'est possible !</p></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td rowspan="2" id="user-avatar-cell"><img class="avatar" src="https://randomuser.me/api/portraits/men/7.jpg" alt=""></td>
+                            <td class="user-name">Warren Hughes</td>
+                            <td rowspan="2" id="message-icon-cell"><img src="{{ asset('build/images/message-icon.svg') }}" alt=""></td>
+                        </tr>
+                        <tr>
+                            {# add a twig filter to display only x characters #}
+                            <td class="user-last-message"><p>Je ne t'avais pas vue ! Où étais-tu ?</p></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td rowspan="2" id="user-avatar-cell"><img class="avatar" src="https://randomuser.me/api/portraits/women/40.jpg" alt=""></td>
+                            <td class="user-name">Isobel Gomez</td>
+                            <td rowspan="2" id="message-icon-cell"><img src="{{ asset('build/images/message-icon.svg') }}" alt=""></td>
+                        </tr>
+                        <tr>
+                            {# add a twig filter to display only x characters #}
+                            <td class="user-last-message"><p>Je vais courir demain avec elle.</p></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td rowspan="2" id="user-avatar-cell"><img class="avatar" src="https://randomuser.me/api/portraits/men/4.jpg" alt=""></td>
+                            <td class="user-name">Bradley Lowe</td>
+                            <td rowspan="2" id="message-icon-cell"><img src="{{ asset('build/images/message-icon.svg') }}" alt=""></td>
+                        </tr>
+                        <tr>
+                            {# add a twig filter to display only x characters #}
+                            <td class="user-last-message"><p>Pourquoi pas ! </p></td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </section>
+            {% endblock greenBox %}
+
+    </section>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('messages') }}
+    {% endblock %}
+{% endblock %}
